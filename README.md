@@ -14,3 +14,5 @@ FrAnanas make you use Closures:
 [Anonymous Function](http://php.net/manual/en/functions.anonymous.php)
 /
 [Closure](http://php.net/manual/en/class.closure.php)
+
+[Issues](https://github.com/Doc0160/FrAnanas/issues)
