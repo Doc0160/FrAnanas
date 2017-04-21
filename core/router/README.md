@@ -1,6 +1,6 @@
 # Router
 
-````php
+```php
 <?php
 // Create a new router
 $router = new Router();
