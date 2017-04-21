@@ -1,6 +1,6 @@
 # Autoload
 
-[Autoload](http://php.net/manual/en/function.spl-autoload-register.php)
+[spl_autoload_register](http://php.net/manual/en/function.spl-autoload-register.php)
 
 ```php
 
