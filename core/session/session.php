@@ -2,9 +2,11 @@
 
 class Session {
     private $timeout;
+    private $name;
 
-    public function __construct(int $timeout = 3600) {
+    public function __construct(string $name='frananas', int $timeout = 3600) {
         $this->timeout = $timeout;
+        $this->name = $name;
         $this->start();
     }
     
@@ -34,7 +36,7 @@ class Session {
 
     public function start() {
         if(!isset($_SESSION)){
-            session_name("ananas");
+            session_name($this->name);
             session_start();
             if($this->has_data()) {
                 if (isset($_SESSION['LAST_ACTIVITY']) &&

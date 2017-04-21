@@ -29,17 +29,22 @@ class View{
             }
         }
     }
-
-    public function display(string $viewName, array $_DATA = []) {
+    
+    public function display($view, array $_DATA = []) {
         
         $this->sanitize($_DATA);
         $_DATA = array_merge($_DATA, $this->context);
-        if(file_exists($this->path.$viewName)) {
-            require($this->path.$viewName);
+        if(is_string($view)) {
+            if(file_exists($this->path.$view)) {
+                require($this->path.$view);
+                return;
+            }
+            throw new Exception("View does not exist: ".$this->path.$view);
+            
+        }else if (is_callable($view)) {
+            $view($_DATA);
             return;
         }
-        
-        throw new Exception("View does not exist: ".$this->path.$viewName);
-
+        throw new Exception('You can only use functions and filename');
     }
 }

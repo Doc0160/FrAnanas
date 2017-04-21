@@ -2,7 +2,7 @@
 
 require('core/autoload/autoload.php');
 
-$autoloader = new Autoload('');
+$autoloader = new Autoload();
 spl_autoload_register([$autoloader, 'load']);
 
 $autoloader->register('cookie', function(){
@@ -25,7 +25,9 @@ $view = new View('/views/');
 $router = new Router('/');
 $router->setNotFound(function($url) use ($view){
     //$view->display('404.php');
-    echo '404';
+    $view->display(function($_DATA) {
+        var_dump($_DATA);
+    }, ['error' => '404']);
 });
 
 $controller = new Controller('/controllers/');

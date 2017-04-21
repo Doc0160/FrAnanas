@@ -6,7 +6,7 @@ class Router{
     private $notFound;
     private $uri;
 
-    public function __construct(string $uri){
+    public function __construct(string $uri = ''){
         $this->uri = $uri;
         $this->notFound = function($url){
             echo "404 - $url was not found!";
