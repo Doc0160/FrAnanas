@@ -24,15 +24,15 @@ class Router{
     }
     
     public function add(string $url, callable $action){
-        $this->addWithMethod("_", $url, $action);
+        return $this->addWithMethod("_", $url, $action);
     }
 
     public function get(string $url, callable $action){
-        $this->addWithMethod("GET", $url, $action);
+        return $this->addWithMethod("GET", $url, $action);
     }
 
     public function post(string $url, callable $action){
-        $this->addWithMethod("POST", $url, $action);
+        return $this->addWithMethod("POST", $url, $action);
     }
 
     public function addWithMethod(string $method, string $url, callable $action){
@@ -42,10 +42,12 @@ class Router{
             throw new Exception("Path already exist: ".$url);
         }
         $this->routes[$method][$this->uri.$url] = $action;
+        return $this;
     }
 
     public function setNotFound(callable $action){
         $this->notFound = $action;
+        return $this;
     }
     
     public function dispatch(){
