@@ -11,5 +11,5 @@ FrAnanas make you use Closures:
 /
 [Closure](http://php.net/manual/en/class.closure.php)
 
-[Autoload](/core/autoload/README.md)
-[Session](/core/session/README.md)
+* [Autoload](/core/autoload/README.md)
+* [Session](/core/session/README.md)
