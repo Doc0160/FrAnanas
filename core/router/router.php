@@ -58,8 +58,9 @@ class Router{
             }
         }
         foreach ($this->routes["_"] as $url => $action) {
-            if( $url == $_SERVER['REQUEST_URI'] ){
-                return $action();
+            if(preg_match("#^".$url."$#i", $_url, $matches)){
+                array_shift($matches);
+                return $action(...$matches);
             }
         }
         call_user_func_array($this->notFound,[$_SERVER['REQUEST_URI']]);
