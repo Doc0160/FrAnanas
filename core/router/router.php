@@ -11,13 +11,14 @@ class Router{
         $this->notFound = function($url){
             echo "404 - $url was not found!";
         };
+        $this->routes['_'] = [];
     }
 
     public function __set(string $url, callable $action){
         $this->addWithMethod("_", $url, $action);
     }
 
-    public function __isset(string $url) bool {
+    public function __isset(string $url) {
         
     }
 

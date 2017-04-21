@@ -1,6 +1,6 @@
 <?php
 
-final class database {
+final class Database {
     private static $PDOInstance = null;
     private static $dsn         = null;
     private static $username    = null;
