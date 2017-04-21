@@ -18,7 +18,18 @@ echo $session->has_data();
 $session->destroy();
 
 
-// session will automagically die after 1 hour
+// session will automagically die after 1 hour away
 // session's default cookie name will be frananas
+
+```
+
+
+```php
+
+// You can specify the cookie's name
+$session = new Session('mysession');
+
+// You can also specify the 'automagically dying' duration (in seconds)
+$session = new Session('mysession', 1800);
 
 ```
