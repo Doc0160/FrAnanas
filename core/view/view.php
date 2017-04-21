@@ -36,7 +36,9 @@ class View{
         $_DATA = array_merge($_DATA, $this->context);
         if(is_string($view)) {
             if(file_exists($this->path.$view)) {
-                require($this->path.$view);
+                function() use ($_DATA) {
+                    require($this->path.$view);
+                }();
                 return;
             }
             throw new Exception("View does not exist: ".$this->path.$view);
