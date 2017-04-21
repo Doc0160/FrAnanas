@@ -36,8 +36,8 @@ class View{
         $_DATA = array_merge($_DATA, $this->context);
         if(is_string($view)) {
             if(file_exists($this->path.$view)) {
-                $f = function($path) use ($_DATA) {
-                    require($path);
+                $f = function($view) use ($_DATA) {
+                    require($view);
                 };
                 $f($this-path.$view);
                 return;
@@ -45,8 +45,8 @@ class View{
             throw new Exception("View does not exist: ".$this->path.$view);
             
         }else if (is_callable($view)) {
-            $f = function($fn) use ($_DATA) {
-                $fn($_DATA);
+            $f = function($view) use ($_DATA) {
+                $view($_DATA);
             };
             $f($view);
             return;
