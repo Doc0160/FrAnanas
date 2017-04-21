@@ -33,11 +33,11 @@ $router->setNotFound(function($url) use ($view){
 $controller = new Controller('/controllers/');
 
 $router->add('/', function() {
-    echo 'index.php !!!';
+    echo 'index.php !!! <a href="/test">test</a>';
 });
 
 function test() {
-    echo 'test';
+    echo 'test <a href="/">/</a>';
 }	 
 // add a 'GET' method route
 $router->get('/test', 'test');
