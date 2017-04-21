@@ -7,6 +7,7 @@ class View{
     
     public function __construct(string $path, array $context = []) {
         $this->path = $path;
+        $this->sanitize($context);
         $this->context = $context;
     }
 
