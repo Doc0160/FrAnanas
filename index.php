@@ -36,4 +36,10 @@ $router->add('/', function() {
     echo 'index.php !!!';
 });
 
+function test() {
+    echo 'test';
+}	 
+// add a 'GET' method route
+$router->get('/test', 'test');
+
 $router->dispatch();
