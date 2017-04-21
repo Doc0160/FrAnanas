@@ -19,7 +19,7 @@ class Router{
 
     public function __debugInfo() {
         return [
-            'routers' => $this->routes,
+            'routes' => $this->routes,
         ];
     }
     
