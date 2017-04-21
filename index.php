@@ -9,8 +9,6 @@ $autoloader->register('cookie', function(){
     return require('/core/session/Cookie.php');
 });
 
-header('Content-Type: text/html; charset=utf-8');
-
 $session = new Session();
 
 $database = Database::getInstance();
@@ -25,3 +23,7 @@ $router->setNotFound(function($url) use ($view){
 });
 
 $controller = new Controller('/controllers/');
+
+
+
+$router->dispatch();
