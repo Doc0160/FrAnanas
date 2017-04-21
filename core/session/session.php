@@ -2,6 +2,7 @@
 
 class Session {
     private $timeout;
+
     public function __construct(int $timeout = 3600) {
         $this->timeout = $timeout;
         $this->start();
@@ -52,4 +53,5 @@ class Session {
             session_destroy();
         }
     }
+
 }
