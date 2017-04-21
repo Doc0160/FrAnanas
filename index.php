@@ -43,3 +43,4 @@ function test() {
 $router->get('/test', 'test');
 
 $router->dispatch();
+

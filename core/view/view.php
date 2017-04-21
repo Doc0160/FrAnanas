@@ -46,7 +46,7 @@ class View{
             
         }else if (is_callable($view)) {
             $f = function($view) use ($_DATA) {
-                $view();
+                $view($_DATA);
             };
             $f($view);
             return;
