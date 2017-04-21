@@ -27,7 +27,7 @@ $router->setNotFound(function($url) use ($view){
     //$view->display('404.php');
     $view->display(function($_DATA) {
         var_dump($_DATA);
-    }, ['error' => '404']);
+    }, ['error' => '404', 'url' => $url]);
 });
 
 $controller = new Controller('/controllers/');

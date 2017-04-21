@@ -7,7 +7,7 @@ $router = new Router();
 
 // Set 404 error
 $router->setNotFound(function($url) {
-echo '404';
+    echo '404 : '.$url.' does not exist';
 });
 
 ?>

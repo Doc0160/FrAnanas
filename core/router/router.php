@@ -11,7 +11,6 @@ class Router{
         $this->notFound = function($url){
             echo "404 - $url was not found!";
         };
-        $this->routes['_'] = [];
     }
 
     public function __set(string $url, callable $action){
@@ -37,6 +36,7 @@ class Router{
     }
 
     public function addWithMethod(string $method, string $url, callable $action){
+        $method = strtoupper($method);
         $url = preg_replace('#:([\w]+)#', '([^/]+)', $url);
         if(isset($this->routes[$method][$this->uri.$url])) {
             throw new Exception("Path already exist: ".$url);
@@ -60,10 +60,12 @@ class Router{
             }
         }
 
-        foreach ($this->routes["_"] as $url => $action) {
-            if(preg_match("#^".$url."$#i", $_url, $matches)){
-                array_shift($matches);
-                return $action(...$matches);
+        if(isset($this->routes['_'])) {
+            foreach ($this->routes["_"] as $url => $action) {
+                if(preg_match("#^".$url."$#i", $_url, $matches)){
+                    array_shift($matches);
+                    return $action(...$matches);
+                }
             }
         }
         
