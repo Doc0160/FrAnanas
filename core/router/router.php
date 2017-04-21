@@ -18,10 +18,6 @@ class Router{
         $this->addWithMethod("_", $url, $action);
     }
 
-    public function __isset(string $url) {
-        
-    }
-
     public function __debugInfo() {
         return [
             'routes' => $this->routes,
@@ -54,6 +50,7 @@ class Router{
     
     public function dispatch(){
         $_url = $_SERVER['REQUEST_URI'];
+        
         if(isset($this->routes[$_SERVER['REQUEST_METHOD']])) {
             foreach ($this->routes[$_SERVER['REQUEST_METHOD']] as $url => $action) {
                 if(preg_match("#^".$url."$#i", $_url, $matches)){
@@ -62,12 +59,14 @@ class Router{
                 }
             }
         }
+
         foreach ($this->routes["_"] as $url => $action) {
             if(preg_match("#^".$url."$#i", $_url, $matches)){
                 array_shift($matches);
                 return $action(...$matches);
             }
         }
+        
         call_user_func_array($this->notFound,[$_SERVER['REQUEST_URI']]);
     }
 
