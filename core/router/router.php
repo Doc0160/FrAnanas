@@ -17,6 +17,10 @@ class Router{
         $this->addWithMethod("_", $url, $action);
     }
 
+    public function __isset(string $url) bool {
+        
+    }
+
     public function __debugInfo() {
         return [
             'routes' => $this->routes,
