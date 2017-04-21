@@ -36,8 +36,9 @@ $router->add('/', function() {
     echo 'index.php !!!';
 });
 
-function test() {
+function test($_DATA) {
     echo 'test';
+    var_dump($_DATA);
 }	 
 // add a 'GET' method route
 $router->get('/test', 'test');
