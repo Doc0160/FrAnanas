@@ -22,7 +22,7 @@ $cookie = new Cookie();
 
 $view = new View('/views/');
 
-$router = new Router('');
+$router = new Router();
 $router->setNotFound(function($url) use ($view){
     //$view->display('404.php');
     $view->display(function($_DATA) {
