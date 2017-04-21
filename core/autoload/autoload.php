@@ -2,6 +2,12 @@
 
 class Autoload{
 
+    private $path;
+    
+    public function __construct(string $path) {
+        $this->path = $path;
+    }
+
     private $autoloadable = [];
 
     public function register($name, $loader = false){
@@ -14,13 +20,16 @@ class Autoload{
 
     public function load($name){
         $name = strtolower($name);
-        $filepath = BASEPATH.'/core/'.$name.'/'.$name.'.php';
-        if( !empty($this->autoloadable[$name]) ){
+        $filepath = $this->path.'core/'.$name.'/'.$name.'.php';
+        
+        if(!empty($this->autoloadable[$name])){
             return $this->autoloadable[$name]($name);
         }
-        if( file_exists($filepath) ){
+        
+        if(file_exists($filepath)){
             return require($filepath);
         }
+        
         throw new Exception($name.' is not loaded or registred for autoloading');
     }
 }

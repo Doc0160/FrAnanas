@@ -1,8 +1,8 @@
 <?php
 
-require('../core/autoload/autoload.php');
+require('core/autoload/autoload.php');
 
-$autoloader = new Autoload();
+$autoloader = new Autoload('');
 spl_autoload_register([$autoloader, 'load']);
 
 $autoloader->register('cookie', function(){
