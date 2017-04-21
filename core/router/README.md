@@ -10,5 +10,7 @@ $router->setNotFound(function($url) {
     echo '404 : '.$url.' does not exist';
 });
 
+$router->dispatch();
+
 ?>
 ```
