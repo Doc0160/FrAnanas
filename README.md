@@ -1,4 +1,4 @@
-# FrAnanas
+# FrAnanas [v1.0](https://github.com/Doc0160/FrAnanas/releases/tag/v1.0)
 ![frananas](frananas.jpg)
 
 3 main components:
