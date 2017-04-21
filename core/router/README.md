@@ -10,6 +10,10 @@ $router->setNotFound(function($url) {
     echo '404 : '.$url.' does not exist';
 });
 
+$router->add('/', function() {
+    echo "i'm index";
+});
+
 $router->dispatch();
 
 ?>
