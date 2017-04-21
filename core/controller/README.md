@@ -8,12 +8,13 @@ $controller = new Controller('/controllers/');
 $controller->execute('wow.php');
 
 // execute a controller file
-$controller->execute('wow.php', ['text' => 'wow that works']);
+$controller->execute('wow.php', ['text' => 'wow that works', 'controller' => $controller]);
 
 ```
 
 ```php
+
 // /controllers/wow.php
 var_dump($_DATA);
-echo $_DATA['text'];
+
 ```
