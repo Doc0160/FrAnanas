@@ -18,7 +18,7 @@ echo $session->has_data();
 $session->destroy();
 
 
-// session will automoticaly die after 1 hour
+// session will automagically die after 1 hour
 // session's default cookie name will be frananas
 
 ```
