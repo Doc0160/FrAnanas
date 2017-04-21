@@ -45,7 +45,10 @@ class View{
             throw new Exception("View does not exist: ".$this->path.$view);
             
         }else if (is_callable($view)) {
-            $view($_DATA);
+            $f = function($view) use ($_DATA) {
+                $view($_DATA);
+            };
+            $f($view);
             return;
         }
         throw new Exception('You can only use functions and filename');
