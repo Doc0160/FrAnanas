@@ -40,10 +40,4 @@ final class database {
     }
 }
 
-database::setConfig('mysql:host='.DATABASE_HOST.';'.
-                    'port='.DATABASE_PORT.';'.
-                    'dbname='.DATABASE_DATABASE.';'.
-                    'charset=utf8',
-                    DATABASE_USERNAME, DATABASE_PASSWORD);
-
 ?>
