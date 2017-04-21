@@ -33,3 +33,9 @@ $session = new Session('mysession');
 $session = new Session('mysession', 1800);
 
 ```
+
+
+
+
+
+[FrAnanas](/README.md)
