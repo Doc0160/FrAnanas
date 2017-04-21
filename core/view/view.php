@@ -29,14 +29,15 @@ class View{
         }
     }
 
-    public function display(string $viewName, array $data = []) {
-        /*echo */
-        $this->sanitize($data);
-        $data = array_merge($data, $this->context);
+    public function display(string $viewName, array $_DATA = []) {
+        
+        $this->sanitize($_DATA);
+        $_DATA = array_merge($_DATA, $this->context);
         if(file_exists($this->path.$viewName)) {
             require($this->path.$viewName);
             return;
         }
+        
         throw new Exception("View does not exist: ".$this->path.$viewName);
 
     }

@@ -13,11 +13,9 @@ class Controller {
         return $this;
     }
 
-    public function execute(string $name, array $data = []) {
-        $data = array_merge($data, $this->context);
-        {
-            require($this->path.$name);
-        }
+    public function execute(string $name, array $_DATA = []) {
+        $_DATA = array_merge($_DATA, $this->context);
+        require($this->path.$name);
     }
 }
 
