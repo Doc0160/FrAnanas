@@ -10,7 +10,7 @@ class Autoload{
 
     private $autoloadable = [];
 
-    public function register($name, $loader = false){
+    public function register(string $name, $loader = false){
         if(is_callable($loader) || $loader == false){
             $this->autoloadable[$name] = $loader;
             return;
@@ -18,7 +18,7 @@ class Autoload{
         throw new Exception('Loader must be callable '.$name);
     }
 
-    public function load($name){
+    public function load(string $name){
         $name = strtolower($name);
         $filepath = $this->path.'core/'.$name.'/'.$name.'.php';
         
