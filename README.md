@@ -10,8 +10,6 @@ Side features:
 * [Autoload](/core/autoload/README.md)
 * [Session](/core/session/README.md)
 
-
-
 FrAnanas make you use Closures:
 [Anonymous Function](http://php.net/manual/en/functions.anonymous.php)
 /
