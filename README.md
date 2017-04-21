@@ -7,5 +7,6 @@
 * [Controller](/core/controller/README.md)
 
 FrAnanas make you use Closures:
-[Anonymous Functions](http://php.net/manual/en/functions.anonymous.php)
+[Anonymous Function](http://php.net/manual/en/functions.anonymous.php)
+/
 [Closure](http://php.net/manual/en/class.closure.php)
