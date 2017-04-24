@@ -1,4 +1,4 @@
-# FrAnanas v1.2
+# FrAnanas v1.2 WIP
 ![frananas](frananas.jpg)
 
 ### 3 main components:
