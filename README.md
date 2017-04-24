@@ -1,5 +1,5 @@
 # FrAnanas v1.2 WIP
-![frananas](frananas.jpg)
+![frananas](frananas.png)
 
 ### 3 main components:
 * [Router](/core/router/README.md)
