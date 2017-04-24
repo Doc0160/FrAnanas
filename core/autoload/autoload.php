@@ -3,12 +3,11 @@
 class Autoload{
 
     private $path;
+    private $autoloadable = [];
     
     public function __construct(string $path = '') {
         $this->path = $path;
     }
-
-    private $autoloadable = [];
 
     public function register(string $name, $loader = false){
         if(is_callable($loader) || $loader == false){
@@ -33,3 +32,5 @@ class Autoload{
         throw new Exception($name.' is not loaded or registred for autoloading');
     }
 }
+
+
