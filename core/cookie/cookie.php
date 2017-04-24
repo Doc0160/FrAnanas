@@ -17,7 +17,7 @@ class Cookie {
     }
 
     public function __unset(string $name) {
-        setcookie($name, '', time()-1);
+        $this->setWithDuration($name, '', -1);
         unset($_COOKIE[$name]);
     }
     
@@ -30,7 +30,7 @@ class Cookie {
     }
 
     public function setWithDuration(string $name, string $value, int $duration) {
-        setcookie($name, $value, time()+$duration);
+        setrawcookie($name, rawurlencode($value), time()+$duration);
     }
 
 }
