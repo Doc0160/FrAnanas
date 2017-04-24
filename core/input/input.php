@@ -7,7 +7,7 @@ class Input {
     private $input;
 
     public function __construct() {
-        $this->input = array_merge($_POST, $_FILES);
+        $this->input = array_merge($_POST, $_FILES, $_GET);
     }
 
     public function __get(string $name) {
@@ -20,6 +20,18 @@ class Input {
 
     public function __debugInfo() {
         return $this->input;
+    }
+
+    public function get() {
+        return $_GET;
+    }
+
+    public function post() {
+        return $_POST;
+    }
+
+    public function files() {
+        return $_FILES;
     }
     
 }
