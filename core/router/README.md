@@ -42,7 +42,7 @@ $router->post('/', function() {
     echo 'post';
 });
 
-// using a more exotic request method
+// using a more exotic request method (delete)
 $router->addWithMethod('DELETE', '/', function() {
     echo 'delete';
 });
