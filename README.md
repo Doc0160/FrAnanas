@@ -23,7 +23,7 @@
 
 ### Versions:
 * [v1.0](https://github.com/Doc0160/FrAnanas/tree/v1.0) First
-* [v1.0](https://github.com/Doc0160/FrAnanas/tree/v1.1) Added Input
+* [v1.1](https://github.com/Doc0160/FrAnanas/tree/v1.1) Added Input
 
 [FrAnanas](/README.md)
 
