@@ -5,10 +5,6 @@ require('core/autoload/autoload.php');
 $autoloader = new Autoload();
 spl_autoload_register([$autoloader, 'load']);
 
-$autoloader->register('cookie', function(){
-    return require('core/session/Cookie.php');
-});
-
 $session = new Session();
 
 Database::setConfig('mysql:host=localhost;'.

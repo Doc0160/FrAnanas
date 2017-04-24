@@ -10,14 +10,12 @@ $autoloader = new Autoload();
 spl_autoload_register([$autoloader, 'load']);
 
 // Register something in the FrAnanas autoload system
-$autoloader->register('cookie', function(){
-    return require('core/session/Cookie.php');
+$autoloader->register('test', function(){
+    return require('test.php');
 });
 
 
 ```
-
-
 
 [FrAnanas](/README.md)
 [spl_autoload_register](http://php.net/manual/en/function.spl-autoload-register.php)

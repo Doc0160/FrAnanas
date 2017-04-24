@@ -11,23 +11,24 @@
 * [Session](/core/session/README.md)
 * [Database](/core/database/README.md)
 * [Input](/core/input/README.md)
+* [Cookie](/core/cookie/README.md)
 
 ### FrAnanas make you use Closures:
 [Anonymous Function](http://php.net/manual/en/functions.anonymous.php)
 /
 [Closure](http://php.net/manual/en/class.closure.php)
 /
-[Variable functions](http://php.net/manual/en/functions.variable-functions.php)
+[Variable Functions](http://php.net/manual/en/functions.variable-functions.php)
 
 ### TODO:
 * [Input] add proper file Handling
-* [Cookie] proper cookie related class ([TOFIX](/core/session/cookie.php))
 * [Controller] prevent any kind of output but letting [View] output ([TODO](http://us3.php.net/manual/en/ref.outcontrol.php))
 
 ### Versions:
 * [v1.0](https://github.com/Doc0160/FrAnanas/tree/v1.0) First
 * [v1.1](https://github.com/Doc0160/FrAnanas/tree/v1.1) Added Input
     * [Input] raw input
+    * Added [Cookie]
 
 [FrAnanas](/README.md)
 
