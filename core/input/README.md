@@ -10,6 +10,14 @@ var_dump($input->visible);
 
 ```
 
+You can also access raw post data:
+
+```php
+
+var_dump($input->raw());
+
+```
+
 
 [FrAnanas](/README.md)
 

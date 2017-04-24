@@ -33,6 +33,10 @@ class Input {
     public function files() {
         return $_FILES;
     }
+
+    public function raw() {
+        return file_get_contents("php://input");
+    }
     
 }
 
