@@ -21,6 +21,8 @@
 * [Input] add proper file Handling
 * [Cookie] proper cookie related class ([TOFIX](/core/session/cookie.php))
 
+### Versions:
+* [v1.0](/tree/v1.0)
 
 [FrAnanas](/README.md)
 
