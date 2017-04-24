@@ -20,6 +20,7 @@
 ### TODO:
 * [Input] add proper file Handling
 * [Cookie] proper cookie related class ([TOFIX](/core/session/cookie.php))
+* [Controller] prevent any kind of output ([TODO](http://us3.php.net/manual/en/ref.outcontrol.php))
 
 ### Versions:
 * [v1.0](https://github.com/Doc0160/FrAnanas/tree/v1.0) First
