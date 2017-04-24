@@ -1,5 +1,7 @@
 # Cookie
 
+Gives access to cookies.
+
 ```php
 
 $cookie = new Cookie();

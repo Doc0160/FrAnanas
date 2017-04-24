@@ -23,6 +23,7 @@
 ### TODO:
 * [Input] add proper file Handling
 * [Controller] prevent any kind of output but letting [View] output ([TODO](http://us3.php.net/manual/en/ref.outcontrol.php))
+* [Database] redo
 
 ### Versions:
 * [v1.0](https://github.com/Doc0160/FrAnanas/tree/v1.0) First
