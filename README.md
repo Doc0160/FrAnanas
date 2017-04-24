@@ -12,10 +12,12 @@
 * [Database](/core/database/README.md)
 * [Input](/core/input/README.md)
 
-### FrAnanas make you use Closures / Anonymous functionS:
+### FrAnanas make you use Closures:
 [Anonymous Function](http://php.net/manual/en/functions.anonymous.php)
 /
 [Closure](http://php.net/manual/en/class.closure.php)
+/
+[Variable functions](http://php.net/manual/en/functions.variable-functions.php)
 
 ### TODO:
 * [Input] add proper file Handling
