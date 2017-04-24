@@ -34,7 +34,7 @@ class Router{
     public function post(string $url, callable $action){
         return $this->addWithMethod("POST", $url, $action);
     }
-
+    
     public function addWithMethod(string $method, string $url, callable $action){
         $method = strtoupper($method);
         $url = preg_replace('#:([\w]+)#', '([^/]+)', $url);
