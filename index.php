@@ -32,12 +32,23 @@ $router->setNotFound(function($url) use ($view){
 
 $controller = new Controller('/controllers/');
 
-$router->add('/', function() {
-    echo 'index.php !!! <a href="/test">test</a>';
+$input = new Input();
+
+$router->add('/', function() use($input) {
+    echo 'index.php !!! <a href="/test">test</a><br><pre>';
+    var_dump($input->test);
+    var_dump($input);
 });
 
 function test() {
     echo 'test <a href="/">/</a>';
+        ?>
+    <form enctype="multipart/form-data" action="/" method="post">
+        <input type="input" name="file">
+        <input type="file" multiple name="test">
+        <input type="submit">
+    </form>
+    <?php
 }	 
 // add a 'GET' method route
 $router->get('/test', 'test');
