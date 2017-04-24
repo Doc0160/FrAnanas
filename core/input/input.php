@@ -1,5 +1,7 @@
 <?php
 
+//TODO: handle files
+
 class Input {
 
     private $input;
