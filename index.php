@@ -51,7 +51,13 @@ function test() {
     <?php
 }	 
 // add a 'GET' method route
-$router->get('/test', 'test');
+    $router->get('/test', 'test');
+
+    
+    $router->add('/m/:id/:name', function($id, $name) {
+        echo $id."<br>".$name;
+    });
+
 
 $router->dispatch();
 
