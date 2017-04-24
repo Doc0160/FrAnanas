@@ -1,10 +1,11 @@
 Options +FollowSymlinks
 RewriteEngine On
+RewriteBase /
 RewriteOptions Inherit
 
 # redirects everything
 # to fix
-RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-l
 RewriteCond %{REQUEST_FILENAME} -f
