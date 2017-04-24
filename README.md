@@ -19,6 +19,7 @@ FrAnanas make you use Closures:
 
 TODO:
 * [Input] add proper file Handling
+* [Cookie] proper cookie related class ([TODEL](/core/session/cookie.php))
 
 
 [FrAnanas](/README.md)
