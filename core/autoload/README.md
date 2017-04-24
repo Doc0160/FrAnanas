@@ -1,7 +1,5 @@
 # Autoload
 
-[spl_autoload_register](http://php.net/manual/en/function.spl-autoload-register.php)
-
 Autoload will automagically import librairies from the core when needed.
 
 ```php
@@ -22,3 +20,4 @@ $autoloader->register('cookie', function(){
 
 
 [FrAnanas](/README.md)
+[spl_autoload_register](http://php.net/manual/en/function.spl-autoload-register.php)
