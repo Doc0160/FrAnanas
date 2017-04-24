@@ -17,7 +17,8 @@ FrAnanas make you use Closures:
 /
 [Closure](http://php.net/manual/en/class.closure.php)
 
-
+TODO:
+* [Input] add proper file Handling
 
 
 [FrAnanas](/README.md)

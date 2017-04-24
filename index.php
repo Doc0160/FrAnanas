@@ -40,23 +40,21 @@ $router->add('/', function() use($input) {
     var_dump($input);
 });
 
-function test() {
+// add a 'GET' method route
+$router->get('/test', function() {
     echo 'test <a href="/">/</a>';
-        ?>
+?>
     <form enctype="multipart/form-data" action="/" method="post">
         <input type="input" name="file">
         <input type="file" multiple name="test">
         <input type="submit">
     </form>
-    <?php
-}	 
-// add a 'GET' method route
-    $router->get('/test', 'test');
+<?php
+});
 
-    
-    $router->add('/m/:id/:name', function($id, $name) {
-        echo $id."<br>".$name;
-    });
+$router->add('/m/:id/:name', function($id, $name) {
+    echo $id."<br>".$name;
+});
 
 
 $router->dispatch();
