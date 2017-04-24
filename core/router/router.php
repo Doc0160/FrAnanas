@@ -13,6 +13,17 @@ class Router{
         };
     }
 
+    public function __isset(string $isurl) {
+        foreach($this->routes as $type => $routes) {
+            foreach($routes as $k => $url) {
+                if($url == $isurl) {
+                   return true; 
+                }
+            }
+        }
+        return false;
+    }
+
     public function __set(string $url, callable $action){
         $this->addWithMethod("_", $url, $action);
     }
