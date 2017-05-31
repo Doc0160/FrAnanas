@@ -3,9 +3,11 @@
 Autoload will automagically import librairies from the core when needed.
 
 Functions:
-- function __construct(string $path = '')
-- function register(string $name, $loader = false)
-- function load(string $name)
+```php
+function __construct*(string $path = '');
+function register(string $name, $loader = false);
+function load(string $name);
+```
 
 Example:
 ```php
