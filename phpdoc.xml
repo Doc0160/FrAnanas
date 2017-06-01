@@ -15,6 +15,6 @@
     <target>docs</target>
   </transformer>
   <transformations>
-    <template name="zend" />
+    <template name="clean" />
   </transformations>
 </phpdoc>
