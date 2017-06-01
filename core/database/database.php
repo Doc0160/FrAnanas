@@ -17,7 +17,10 @@ final class Database {
     public static function getInstance(): PDO {
         if(is_null(self::$PDOInstance)){
             if(self::configDone()){
-                self::$PDOInstance = new PDO(self::$dsn, self::$username, self::$password, self::$options);
+                self::$PDOInstance = new PDO(self::$dsn,
+                                             self::$username,
+                                             self::$password,
+                                             self::$options);
             }else{
                 throw new Exception(__CLASS__." : no config !");
             }
