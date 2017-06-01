@@ -21,7 +21,7 @@ final class Database {
                                              self::$username,
                                              self::$password,
                                              self::$options);
-            }else{
+            } else {
                 throw new Exception(__CLASS__." : no config !");
             }
         }
@@ -30,7 +30,7 @@ final class Database {
 
     public static function setConfig(string $dsn,
                                      string $username, string $password,
-                                     array $options = array()){
+                                     array $options = []){
         self::$dsn      = $dsn;
         self::$username = $username;
         self::$password = $password;
