@@ -1,6 +1,8 @@
 # FrAnanas v1.2 WIP
 ![frananas](frananas.png)
 
+[Documentation](https://doc0160.github.io/FrAnanas/)
+
 ### 3 main components:
 * [Router](/core/router/README.md)
 * [View](/core/view/README.md)
