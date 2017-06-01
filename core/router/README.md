@@ -3,11 +3,23 @@
 The router class has the basic functionnality of adding callbacks to
 user/develloper defined routes.
 
+```php
+
+function __construct(string $uri = '')
+function add(string $url, callable $action)
+function get(string $url, callable $action)
+function post(string $url, callable $action)
+function addWithMethod(string $method, string $url, callable $action)
+function setNotFound(callable $action)
+function dispatch()
+function redirect(string $page)
+```
+
 Example:
 ```php
 <?php
-// Create a new router
-$router = new Router();
+// Create a new router if you don't want the default one
+// $router = new Router();
 
 // Set 404 error
 $router->setNotFound(function($url) {
@@ -25,7 +37,7 @@ $router->add('/m/:id/:name', function($id, $name) {
 });
 
 
-$router->dispatch();
+$router();
 
 ?>
 ```

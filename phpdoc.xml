@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+  <files>
+    <directory>core</directory>
+  </files>
+  <parser>
+    <markers>
+      <item>NOTE</item>
+      <item>TODO</item>
+      <item>FIXME</item>
+    </markers>
+  </parser>
+  <transformer>
+    <target>documentation</target>
+  </transformer>
+  <transformations>
+    <template name="contao"/>
+  </transformations>
+</phpdoc>

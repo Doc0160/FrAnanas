@@ -1,11 +1,17 @@
 <?php
 
-class Router{
+/**
+   Router class
+*/
+class Router {
 
     private $routes = [];
     private $notFound;
     private $uri;
 
+    /**
+       
+    */
     public function __construct(string $uri = ''){
         $this->uri = $uri;
         $this->notFound = function($url){
@@ -15,18 +21,21 @@ class Router{
 
     // TODO
     /*
-    public function __isset(string $isurl) {
-        foreach($this->routes as $type => $routes) {
-            foreach($routes as $k => $url) {
-                if($url == $isurl) {
-                   return true;
-                }
-            }
-        }
-        return false;
-    }
-    */
+       public function __isset(string $isurl) {
+       foreach($this->routes as $type => $routes) {
+       foreach($routes as $k => $url) {
+       if($url == $isurl) {
+       return true;
+       }
+       }
+       }
+       return false;
+       }
+     */
 
+    /**
+       calls add
+     */
     public function __set(string $url, callable $action){
         $this->addWithMethod("_", $url, $action);
     }
@@ -35,6 +44,11 @@ class Router{
         return [
             'routes' => $this->routes,
         ];
+    }
+
+    public function __invoke()
+    {
+        $this->dispatch();
     }
     
     public function add(string $url, callable $action){
@@ -57,6 +71,7 @@ class Router{
             throw new Exception("Path already exist: ".$url);
         }
         $this->routes[$method][$this->uri.$url] = $action;
+        
         return $this;
     }
 

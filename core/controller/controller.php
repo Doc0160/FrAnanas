@@ -9,9 +9,9 @@ class Controller {
         $this->context = $context;
     }
 
-    public function __debugInfo() {
+    /*public function __debugInfo() {
         return $this;
-    }
+    }*/
 
     public function execute(string $name, array $_DATA = []) {
         $_DATA = array_merge($_DATA, $this->context);
