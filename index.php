@@ -13,17 +13,14 @@ $database = Database::getInstance();
 
 $cookie = new Cookie();
 
-$view = new View('/views/');
-
-$router = new Router();
-$router->setNotFound(function($url) use ($view){
-    //$view->display('404.php');
-    $view->display(function($_DATA) {
+$router->setNotFound(function($url) {
+    global $view;
+    
+    $view->display('404.php', ['url' => $url]);
+    /*$view->display(function($_DATA) {
         var_dump($_DATA);
-    }, ['error' => '404', 'url' => $url]);
+    }, ['error' => '404', 'url' => $url]);*/
 });
-
-$controller = new Controller('/controllers/');
 
 $input = new Input();
 

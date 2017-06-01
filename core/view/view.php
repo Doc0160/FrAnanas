@@ -39,7 +39,7 @@ class View{
                 $f = function($view) use ($_DATA) {
                     require($view);
                 };
-                $f($this-path.$view);
+                $f($this->path.$view);
                 return;
             }
             throw new Exception("View does not exist: ".$this->path.$view);
