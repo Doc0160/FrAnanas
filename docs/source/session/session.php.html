@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+class Session {
+    private $timeout;
+    private $name;
+
+    public function __construct(string $name='frananas', int $timeout = 3600) {
+        $this-&gt;timeout = $timeout;
+        $this-&gt;name = $name;
+        $this-&gt;start();
+    }
+    
+    public function __get(string $name) {
+        return (isset($_SESSION[$name])) ? $_SESSION[$name] : null;
+    }
+
+    public function __set(string $name, $value) {
+        $_SESSION[$name] = $value;
+    }
+
+    public function __unset(string $name) {
+        unset($_SESSION[$name]);
+    }
+    
+    public function __isset(string $name): bool {
+        return isset($_SESSION[$name]);
+    }
+
+    public function __debugInfo() {
+        return $_SESSION;
+    }
+
+    public function has_data(): bool {
+        return isset($_SESSION) &amp;&amp; !empty($_SESSION);
+    }
+
+    public function start() {
+        if(!isset($_SESSION)){
+            session_name($this-&gt;name);
+            session_start();
+            if($this-&gt;has_data()) {
+                if (isset($_SESSION['LAST_ACTIVITY']) &amp;&amp;
+                    (time() - (int)$_SESSION['LAST_ACTIVITY'] &gt; $this-&gt;timeout)) {
+                    session_unset();
+                } else {
+                    $_SESSION['LAST_ACTIVITY'] = time();
+                }
+            }
+        }
+    }
+
+    public function destroy() {
+        if(isset($_SESSION)){
+            session_unset();
+            session_destroy();
+        }
+    }
+
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

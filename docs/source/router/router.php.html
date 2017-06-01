@@ -1,0 +1,188 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+/**
+ *  Router class
+ */
+class Router {
+
+    private $routes = [];
+    private $notFound;
+    private $uri;
+
+    /**
+     * __construct
+     * @param string $uri
+     */
+    public function __construct(string $uri = ''){
+        $this-&gt;uri = $uri;
+        $this-&gt;notFound = function($url){
+            echo &quot;404 - $url was not found!&quot;;
+        };
+    }
+
+    // TODO
+    /*
+       public function __isset(string $isurl) {
+       foreach($this-&gt;routes as $type =&gt; $routes) {
+       foreach($routes as $k =&gt; $url) {
+       if($url == $isurl) {
+       return true;
+       }
+       }
+       }
+       return false;
+       }
+     */
+
+    /**
+     * @ignore
+     */
+    public function __set(string $url, callable $action){
+        $this-&gt;addWithMethod(&quot;_&quot;, $url, $action);
+    }
+
+    /**
+     * @ignore
+     */
+    public function __debugInfo() {
+        return [
+            'routes' =&gt; $this-&gt;routes,
+        ];
+    }
+    
+    /**
+     * @ignore
+     */
+    public function __invoke()
+    {
+        $this-&gt;dispatch();
+    }
+    
+    /**
+     * add route
+     * @param string $url
+     * @param callable $action
+     */
+    public function add(string $url, callable $action){
+        return $this-&gt;addWithMethod(&quot;_&quot;, $url, $action);
+    }
+    
+    /**
+     * add get route
+     * @param string $url
+     * @param callable $action
+     */
+    public function get(string $url, callable $action){
+        return $this-&gt;addWithMethod(&quot;GET&quot;, $url, $action);
+    }
+
+    /**
+     * add post route
+     * @param string $url
+     * @param callable $action
+     */
+    public function post(string $url, callable $action){
+        return $this-&gt;addWithMethod(&quot;POST&quot;, $url, $action);
+    }
+    /**
+     * add a route with a method
+     * @param string $method
+     * @param string $url
+     * @param callable $action
+     */
+    public function addWithMethod(string $method, string $url, callable $action){
+        $method = strtoupper($method);
+        $url = preg_replace('#:([\w]+)#', '([^/]+)', $url);
+        if(isset($this-&gt;routes[$method][$this-&gt;uri.$url]) ||
+           isset($this-&gt;routes['_'][$this-&gt;uri.$url])) {
+            throw new Exception(&quot;Path already exist: &quot;.$url);
+        }
+        $this-&gt;routes[$method][$this-&gt;uri.$url] = $action;
+        
+        return $this;
+    }
+    /**
+     * add callback for 404 cases
+     * @param callable $action
+     */
+    public function setNotFound(callable $action){
+        $this-&gt;notFound = $action;
+        return $this;
+    }
+    
+    public function dispatch(){
+        $_url = $_SERVER['REQUEST_URI'];
+        
+        if(isset($this-&gt;routes[$_SERVER['REQUEST_METHOD']])) {
+            foreach ($this-&gt;routes[$_SERVER['REQUEST_METHOD']] as $url =&gt; $action){
+                if(preg_match(&quot;#^&quot;.$url.&quot;$#i&quot;, $_url, $matches)){
+                    array_shift($matches);
+                    return $action(...$matches);
+                }
+            }
+        }
+
+        if(isset($this-&gt;routes['_'])) {
+            foreach ($this-&gt;routes['_'] as $url =&gt; $action) {
+                if(preg_match(&quot;#^&quot;.$url.&quot;$#i&quot;, $_url, $matches)){
+                    array_shift($matches);
+                    return $action(...$matches);
+                }
+            }
+        }
+        
+        call_user_func_array($this-&gt;notFound,[$_SERVER['REQUEST_URI']]);
+    }
+
+    public function redirect(string $page) {
+        header('Location: '.$this-&gt;uri.$page);
+    }
+
+}
+
+
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

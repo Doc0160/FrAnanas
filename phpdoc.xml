@@ -4,6 +4,7 @@
     <directory>core</directory>
   </files>
   <parser>
+    <target>docs</target>
     <markers>
       <item>NOTE</item>
       <item>TODO</item>
@@ -11,9 +12,9 @@
     </markers>
   </parser>
   <transformer>
-    <target>documentation</target>
+    <target>docs</target>
   </transformer>
   <transformations>
-    <template name="contao"/>
+    <template name="zend" />
   </transformations>
 </phpdoc>

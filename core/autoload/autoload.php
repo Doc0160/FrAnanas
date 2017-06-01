@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Class Autoloader
+ */
 class Autoload{
 
     private $path;

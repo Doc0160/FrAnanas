@@ -1,2 +1,8 @@
 <?php
-// FrAnans is golden
+/**
+ * FrAnanas is golden
+ */
+
+/**
+ * FrAnanas is golden
+ */

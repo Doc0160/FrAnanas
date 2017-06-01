@@ -1,7 +1,7 @@
 <?php
 
 /**
-   Router class
+ *  Router class
  */
 class Router {
 
@@ -10,7 +10,8 @@ class Router {
     private $uri;
 
     /**
-       
+     * __construct
+     * @param string $uri
      */
     public function __construct(string $uri = ''){
         $this->uri = $uri;
@@ -34,37 +35,61 @@ class Router {
      */
 
     /**
-       calls add
-       @param string $url
-       @param callable $action
+     * @ignore
      */
     public function __set(string $url, callable $action){
         $this->addWithMethod("_", $url, $action);
     }
 
+    /**
+     * @ignore
+     */
     public function __debugInfo() {
         return [
             'routes' => $this->routes,
         ];
     }
-
+    
+    /**
+     * @ignore
+     */
     public function __invoke()
     {
         $this->dispatch();
     }
     
+    /**
+     * add route
+     * @param string $url
+     * @param callable $action
+     */
     public function add(string $url, callable $action){
         return $this->addWithMethod("_", $url, $action);
     }
-
+    
+    /**
+     * add get route
+     * @param string $url
+     * @param callable $action
+     */
     public function get(string $url, callable $action){
         return $this->addWithMethod("GET", $url, $action);
     }
 
+    /**
+     * add post route
+     * @param string $url
+     * @param callable $action
+     */
     public function post(string $url, callable $action){
         return $this->addWithMethod("POST", $url, $action);
     }
-    
+    /**
+     * add a route with a method
+     * @param string $method
+     * @param string $url
+     * @param callable $action
+     */
     public function addWithMethod(string $method, string $url, callable $action){
         $method = strtoupper($method);
         $url = preg_replace('#:([\w]+)#', '([^/]+)', $url);
@@ -76,7 +101,10 @@ class Router {
         
         return $this;
     }
-
+    /**
+     * add callback for 404 cases
+     * @param callable $action
+     */
     public function setNotFound(callable $action){
         $this->notFound = $action;
         return $this;

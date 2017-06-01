@@ -1,6 +1,11 @@
 <?php
+/**
+ * FrAnanas is golden
+ */
 
-
+/**
+ * FrAnanas is golden
+ */
 require('autoload/autoload.php');
 
 $autoloader = new Autoload('../');
