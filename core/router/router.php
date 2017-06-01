@@ -2,7 +2,7 @@
 
 /**
    Router class
-*/
+ */
 class Router {
 
     private $routes = [];
@@ -11,7 +11,7 @@ class Router {
 
     /**
        
-    */
+     */
     public function __construct(string $uri = ''){
         $this->uri = $uri;
         $this->notFound = function($url){
@@ -35,6 +35,8 @@ class Router {
 
     /**
        calls add
+       @param string $url
+       @param callable $action
      */
     public function __set(string $url, callable $action){
         $this->addWithMethod("_", $url, $action);
