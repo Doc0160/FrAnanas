@@ -15,13 +15,14 @@ $db->setConfig('mysql:host=localhost;'.
                'root', '');
 
 $cookie = new Cookie();
+$input = new Input();
 
 $router->setNotFound(function($url) {
     global $view;    
     $view->display('404.php', ['url' => $url]);
 });
 
-$input = new Input();
+$array = new ArrayClass([22,33]);
 
 $router->add('/', function() {
     echo 'index.php !!! <a href="/test">test</a><br><pre>';
