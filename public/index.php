@@ -23,6 +23,7 @@ $router->setNotFound(function($url) {
 });
 
 $array = new ArrayClass([22,33]);
+echo $array->count();
 
 $router->add('/', function() {
     echo 'index.php !!! <a href="/test">test</a><br><pre>';

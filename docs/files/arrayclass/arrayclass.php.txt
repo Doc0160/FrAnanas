@@ -13,6 +13,7 @@ class ArrayClass {
      * @return int
      */
     function count($mode = COUNT_NORMAL) {
-        return count($this->array, $mode);
+        return count($this->a, $mode);
     }
 }
+
