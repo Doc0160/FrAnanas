@@ -6,7 +6,7 @@
 /**
  * Class Autoloader
  */
-class Autoload{
+class Autoload {
 
     /**
      * @ignore
@@ -35,7 +35,7 @@ class Autoload{
             $this->autoloadable[$name] = $loader;
             return;
         }
-        throw new Exception('Loader must be callable '.$name);
+        throw new AutoloadException('Loader must be callable '.$name);
     }
     
     /**
@@ -54,9 +54,9 @@ class Autoload{
             return require($filepath);
         }
         
-        throw new Exception($name.' is not loaded or registred for autoloading');
+        throw new AutoloadException($name.' is not loaded or registred for autoloading');
     }
 }
 
-
+class AutoloadException extends Exception { }
 

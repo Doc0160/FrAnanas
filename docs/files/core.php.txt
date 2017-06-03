@@ -12,12 +12,11 @@ $autoloader = new Autoload('../');
 spl_autoload_register([$autoloader, 'load']);
 
 $view = new View('../views/');
-
 $controller = new Controller('../controllers/');
-
 $router = new Router();
 
 $session = new Session();
+$cookie = new Cookie();
 
 $db = new DB();
 

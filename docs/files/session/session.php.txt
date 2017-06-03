@@ -3,7 +3,7 @@
 /**
  * Session Class
  */
-class Session {
+class Session implements ArrayAccess, Countable {
     /** @ignore */
     private $timeout;
     /** @ignore */
@@ -39,6 +39,26 @@ class Session {
     /** @ignore */
     public function __debugInfo() {
         return $_SESSION;
+    }
+
+    public function offsetExists($offset):bool {
+        return isset($_SESSION[$offset]);
+    }
+    
+    public function offsetGet($offset) {
+        return isset($_SESSION[$offset]) ? $_SESSION[$offset] : null;
+    }
+    
+    public function offsetSet($offset, $value):void {
+        if (is_null($offset)) {
+            $_SESSION[] = $value;
+        } else {
+            $_SESSION[$offset] = $value;
+        }
+    }
+    
+    public function offsetUnset($offset): void {
+        unset($_SESSION[$offset]);
     }
 
     /*public function has_data(): bool {
@@ -93,6 +113,10 @@ class Session {
         $this->destroy();
         $this->start();
     }
+
+    public function count():int {
+        return count($_SESSION);
+    } 
     
     public function get_csrf_token():string {
         if (!session_id()) $this->start();

@@ -32,32 +32,22 @@ class View{
     
     public function display($view, array $_DATA = []) {
         $this->sanitize($_DATA);
-        $_DATA = array_merge($_DATA, $this->context);
+        $_DATA = array_merge($this->context, $_DATA);
         
         if(is_string($view)) {
             if(file_exists($this->path.$view)) {
                 $f = function($view) use ($_DATA) {
-                    foreach($_DATA as $_key => $_value) {
-                        $$_key = $_value;
-                    }
+                    extract($_DATA, EXTR_SKIP);
                     require($view);
                 };
                 $f($this->path.$view);
                 return;
             }
-            throw new Exception("View does not exist: ".$this->path.$view);
-            
-        }/*else if (is_callable($view)) {
-            $f = function($view) use ($_DATA) {
-                foreach($_DATA as $_key => $_value) {
-                    $$_key = $_value;
-                }
-                $view($_DATA);
-            };
-            $f($view);
-            return;
-        }*/
-        throw new Exception('You can only use functions and filename');
+            throw new ViewException("View does not exist: ".$this->path.$view);
+        }
+        throw new ViewException('You can only use functions and filename');
     }
 }
+
+class ViewException extends Exception { }
 

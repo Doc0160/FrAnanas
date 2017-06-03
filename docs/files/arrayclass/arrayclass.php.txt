@@ -6,7 +6,7 @@
  * Easy array manipulation class
  */
 class ArrayClass implements ArrayAccess, Countable {
-    public  $array;
+    public $array;
     
     public function __construct(array &$array) {
         $this->array = &$array;
@@ -191,7 +191,6 @@ class ArrayClass implements ArrayAccess, Countable {
     function count($mode = COUNT_NORMAL) {
         return count($this->array, $mode);
     }
-
     
     // ArrayAccess
     function offsetExists($offset) {
