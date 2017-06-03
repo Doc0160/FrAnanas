@@ -1,16 +1,24 @@
 <?php
-
+/**
+ * @deprecated
+ */
 final class Database {
-
+    
+    /** @ignore */
     private static $PDOInstance = null;
+    /** @ignore */
     private static $dsn         = null;
+    /** @ignore */
     private static $username    = null;
-    private static $password    = null;
+    /** @ignore */
+    private static $password    = null; 
+    /** @ignore */
     private static $options     = array(
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
     );
 
+    /** @ignore */
     private function __construct(){
     }
 
@@ -36,7 +44,8 @@ final class Database {
         self::$password = $password;
         self::$options += $options;
     }
-
+    
+    /** @ignore */
     private static function configDone(): bool {
         return self::$dsn !== null &&
                self::$username !== null &&

@@ -5,8 +5,11 @@
  */
 class Router {
 
+    /** @ignore */
     private $routes = [];
+    /** @ignore */
     private $notFound;
+    /** @ignore */
     private $uri;
 
     /**
@@ -34,25 +37,19 @@ class Router {
        }
      */
 
-    /**
-     * @ignore
-     */
+    /** @ignore */
     public function __set(string $url, callable $action){
         $this->addWithMethod("_", $url, $action);
     }
 
-    /**
-     * @ignore
-     */
+    /** @ignore */
     public function __debugInfo() {
         return [
             'routes' => $this->routes,
         ];
     }
     
-    /**
-     * @ignore
-     */
+    /** @ignore */
     public function __invoke()
     {
         $this->dispatch();
@@ -86,6 +83,12 @@ class Router {
     }
     /**
      * add a route with a method
+     *
+     * $url:
+     * - /test
+     * - /test/* matches /test, /test/truc, /test/b/aaaa/ggg, ...
+     * - /test/:id matches /test/a, /test/1, /test/test, /test/me
+     *
      * @param string $method
      * @param string $url
      * @param callable $action
@@ -93,6 +96,8 @@ class Router {
     public function addWithMethod(string $method, string $url, callable $action){
         $method = strtoupper($method);
         $url = preg_replace('#:([\w]+)#', '([^/]+)', $url);
+        $url = preg_replace('#\*#', '(.*)', $url);
+        
         if(isset($this->routes[$method][$this->uri.$url]) ||
            isset($this->routes['_'][$this->uri.$url])) {
             throw new Exception("Path already exist: ".$url);
@@ -109,12 +114,16 @@ class Router {
         $this->notFound = $action;
         return $this;
     }
-    
+
+    /**
+     * Dispatch routes
+     */
     public function dispatch(){
         $_url = $_SERVER['REQUEST_URI'];
+        $_method = $_SERVER['REQUEST_METHOD'];
         
-        if(isset($this->routes[$_SERVER['REQUEST_METHOD']])) {
-            foreach ($this->routes[$_SERVER['REQUEST_METHOD']] as $url => $action){
+        if(isset($this->routes[$_method])) {
+            foreach ($this->routes[$_method] as $url => $action){
                 if(preg_match("#^".$url."$#i", $_url, $matches)){
                     array_shift($matches);
                     return $action(...$matches);
@@ -131,9 +140,12 @@ class Router {
             }
         }
         
-        call_user_func_array($this->notFound,[$_SERVER['REQUEST_URI']]);
+        call_user_func_array($this->notFound,[$_url]);
     }
 
+    /**
+     * 
+     */
     public function redirect(string $page) {
         header('Location: '.$this->uri.$page);
     }

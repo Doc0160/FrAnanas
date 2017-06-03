@@ -26,9 +26,12 @@ class Controller {
         $this->context = $context;
     }
 
-    /*public function __debugInfo() {
-       return $this;
-       }*/
+    /**
+     * @ignore
+     */
+    public function __debugInfo() {
+        return [];
+    }
     
     /**
      * Execute a controller file
@@ -38,7 +41,20 @@ class Controller {
      */
     public function execute(string $name, array $_DATA = []) {
         $_DATA = array_merge($this->context, $_DATA);
-        require($this->path.$name);
+        foreach($_DATA as $_key => $_value) {
+            $$_key = $_value;
+        }
+        if(file_exists($this->path.$name)) {
+            require($this->path.$name);
+        }
+        throw new Exception('You can only use functions and filename');
+        /*$f = function($name) use ($_DATA) {
+           foreach($_DATA as $_key => $_value) {
+           $$_key = $_value;
+           }
+           require($name);
+           };
+           $f($this->path.$view);*/
     }
 }
 

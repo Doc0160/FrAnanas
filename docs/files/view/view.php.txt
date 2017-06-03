@@ -31,12 +31,15 @@ class View{
     }
     
     public function display($view, array $_DATA = []) {
-        
         $this->sanitize($_DATA);
         $_DATA = array_merge($_DATA, $this->context);
+        
         if(is_string($view)) {
             if(file_exists($this->path.$view)) {
                 $f = function($view) use ($_DATA) {
+                    foreach($_DATA as $_key => $_value) {
+                        $$_key = $_value;
+                    }
                     require($view);
                 };
                 $f($this->path.$view);
@@ -44,13 +47,16 @@ class View{
             }
             throw new Exception("View does not exist: ".$this->path.$view);
             
-        }else if (is_callable($view)) {
+        }/*else if (is_callable($view)) {
             $f = function($view) use ($_DATA) {
+                foreach($_DATA as $_key => $_value) {
+                    $$_key = $_value;
+                }
                 $view($_DATA);
             };
             $f($view);
             return;
-        }
+        }*/
         throw new Exception('You can only use functions and filename');
     }
 }

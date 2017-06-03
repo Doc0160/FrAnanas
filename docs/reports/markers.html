@@ -59,17 +59,17 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">95</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">101</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">2</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">5</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="../reports/deprecated.html">
-                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">1</span>
                                 </a>
                             </li>
                         </ul>
@@ -88,9 +88,10 @@
         <div class="span2 sidebar">
             <ul class="side-nav nav nav-list">
                 <li class="nav-header">Navigation</li>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li><a href="#input\input.php"><i class="icon-file"></i> input\input.php</a></li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <li><a href="#input\input.php"><i class="icon-file"></i> input\input.php</a></li>
                                                                                                                                                         <li><a href="#router\router.php"><i class="icon-file"></i> router\router.php</a></li>
-                                                                                                                                                                                                                                                                                                    </ul>
+                                                                                                                                                        <li><a href="#session\session.php"><i class="icon-file"></i> session\session.php</a></li>
+                                                                                                                                                                                    </ul>
         </div>
 
         <div class="span10 offset2">
@@ -102,7 +103,7 @@
 
             
             <div id="marker-accordion">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="package-contents">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="package-contents">
                             <a name="input\input.php" id="input\input.php"></a>
                             <h3>
                             <i class="icon-file"></i>
@@ -140,13 +141,45 @@
                                     </tr>
                                                                             <tr>
                                             <td>TODO</td>
-                                            <td>23</td>
+                                            <td>26</td>
                                             <td></td>
                                         </tr>
                                                                     </table>
                             </div>
                         </div>
-                                                                                                                                                                                                </div>
+                                                                                                                    <div class="package-contents">
+                            <a name="session\session.php" id="session\session.php"></a>
+                            <h3>
+                            <i class="icon-file"></i>
+                                session\session.php
+                                <small style="float: right;padding-right: 10px;">3</small>
+                            </h3>
+                            <div>
+                                <table class="table markers table-bordered">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Line</th>
+                                        <th>Description</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td>NOTE</td>
+                                            <td>50</td>
+                                            <td>(doc): javascript shouldn&#039;t be able to see the session cookie</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td>NOTE</td>
+                                            <td>52</td>
+                                            <td>(doc): url&#039;s should never contain session id&#039;s</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td>NOTE</td>
+                                            <td>56</td>
+                                            <td>(doc): a good idea to set this in php.ini</td>
+                                        </tr>
+                                                                    </table>
+                            </div>
+                        </div>
+                                                                                                                        </div>
         </div>
     </section>
 
@@ -186,7 +219,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on June 1st, 2017 at 21:05.
+                    on June 2nd, 2017 at 23:20.
                 </section>
             </section>
         </section>
