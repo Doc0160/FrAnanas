@@ -100,7 +100,7 @@ class Router {
         
         if(isset($this->routes[$method][$this->uri.$url]) ||
            isset($this->routes['_'][$this->uri.$url])) {
-            throw new Exception("Path already exist: ".$url);
+            throw new RouterException("Path already exist: ".$url);
         }
         $this->routes[$method][$this->uri.$url] = $action;
         
@@ -152,4 +152,4 @@ class Router {
 
 }
 
-
+class RouterException extends Exception { }

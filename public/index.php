@@ -14,16 +14,12 @@ $db->setConfig('mysql:host=localhost;'.
                'charset=utf8',
                'root', '');
 
-$cookie = new Cookie();
 $input = new Input();
 
 $router->setNotFound(function($url) {
     global $view;    
     $view->display('404.php', ['url' => $url]);
 });
-
-$array = new ArrayClass([22,33]);
-echo $array->count();
 
 $router->add('/', function() {
     echo 'index.php !!! <a href="/test">test</a><br><pre>';
@@ -43,8 +39,10 @@ $router->add('/test/*',
                  echo '</pre>';
                  
              })->add('/:id', function($id) {
-                 echo $id;
-                 
+                 global $controller;
+                 $controller->execute(function($d) {
+                     var_dump($d['id']);
+                 }, ['id' => $id]);
              }));
 
 $router();

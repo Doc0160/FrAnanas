@@ -7,13 +7,9 @@
  * Controller Class
  */
 class Controller {
-    /**
-     * @ignore
-     */
+    /** @ignore */
     private $path;
-    /**
-     * @ignore
-     */
+    /** @ignore */
     private $context;
 
     /**
@@ -26,37 +22,40 @@ class Controller {
         $this->context = $context;
     }
 
-    /**
-     * @ignore
-     */
+    /** @ignore */
     public function __debugInfo() {
-        return [];
+        return $context;
     }
     
     /**
      * Execute a controller file
-     * $_DATA in the controller file to refer to what's benn passed to it
+     * $_DATA in the controller file to refer to what's been passed to it
      * @param string $name Filename
      * @param array $_DATA Data to pass to the controller
      */
-    public function execute(string $name, array $_DATA = []) {
+    public function execute($controller, array $_DATA = []) {
         $_DATA = array_merge($this->context, $_DATA);
-        foreach($_DATA as $_key => $_value) {
-            $$_key = $_value;
+        
+        if(is_string($controller)) {
+            if(file_exists($this->path.$controller)) {
+                $f = function($controller) use ($_DATA) {
+                    extract($_DATA, EXTR_SKIP);
+                    require($controller);
+                };
+                $f($this->path.$controller);
+                return;
+            }
+            throw new ControlerException("Controller does not exist: ".$this->path.$controller);
+        } else if(is_callable($controller)) {
+            $f = function($controller) use ($_DATA) {
+                $controller($_DATA);
+            };
+            $f($controller);
+            return;
         }
-        if(file_exists($this->path.$name)) {
-            require($this->path.$name);
-        }
-        throw new Exception('You can only use functions and filename');
-        /*$f = function($name) use ($_DATA) {
-           foreach($_DATA as $_key => $_value) {
-           $$_key = $_value;
-           }
-           require($name);
-           };
-           $f($this->path.$view);*/
+        throw new ControllerException('You can only use functions and filename');
     }
 }
 
-
+class ControllerException extends Exception { }
 

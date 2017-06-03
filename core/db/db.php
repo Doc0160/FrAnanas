@@ -24,8 +24,7 @@ class DB {
     private $req = [];
 
     /** @ignore */
-    public function __construct() {
-        
+    public function __construct() {        
     }
 
     /**
@@ -97,7 +96,7 @@ class DB {
     /**
      * $users = $db->select('*')->from('users')->where('id>1')->limit(100)->orderby('username')->fetchAll();
      */
-    public function limit(int $what = 100) {
+    public function limit(string $what = '100') {
         $this->req['limit'] = $what;
         return $this;
     }
