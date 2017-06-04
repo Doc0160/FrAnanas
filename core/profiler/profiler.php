@@ -36,12 +36,12 @@ class Profiler {
     background-color: black;
     color: white;
     font: 1em "Trebuchet MS",Arial,sans-serif ;
-    line-height: 1em ;
+    line-height: 2em ;
     overflow-x: scroll;
     overflow-y: visible;
     list-style: none;
     white-space: nowrap;
-    padding: 0.5em;
+    //padding: 0.5em;
 }
 #php-profiler-bar li {
     margin: 0;
@@ -54,11 +54,12 @@ class Profiler {
     position: fixed;
     left: 0;
     right: 0;
-    top: 2em;
+    top: 1.5em;
     background-color: black;
     border-top: 1px solid white;
     overflow: auto;
-    padding: 0.5em;
+    padding: 0.5em;;
+line-height: 1em ;
 }
 #php-profiler-bar li:hover > ul {
     display: block;
@@ -242,6 +243,14 @@ body {
             unset($name, $value);
             $this->session['items'] = $section_data_array;
         }
+        $this->session['meta'][] = [
+            'name' => 'SESSION Name',
+            'value' => session_name(),
+        ];
+        $this->session['meta'][] = [
+            'name' => 'SESSION ID',
+            'value' => session_id(),
+        ];
     }
 
     /**

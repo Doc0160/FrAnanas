@@ -21,12 +21,31 @@ class ArrayClass implements ArrayAccess, Countable {
         $this->array = &$array;
     }
 
+    public function json():string {
+        return json_encode($this->array);
+    }
+
+    public function csv($delimiter = ';', $enclosure = '"'):string {
+        $str = '';
+        $handle = fopen('php://temp', 'r+');
+        foreach ($data as $line) {
+            fputcsv($handle, $line, $delimiter, $enclosure);
+        }
+        unset($line, $delimiter, $enclosure);
+        rewind($handle);
+        while (!feof($handle)) {
+            $str .= fread($handle, 8192);
+        }
+        fclose($handle);
+        return $str;
+    }
+
     /**
      * Return all the keys of an array.
      * Due to limitations the additional parameters of array_keys are not supported.
      * @return Array|ArrayClass
      */
-    function keys() {
+    public function keys() {
         return array_keys($this->array);
     }
     
@@ -34,7 +53,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * Return all the values of an array
      * @return Array|ArrayClass
      */
-    function values() {
+    public function values() {
         return array_values($this->array);
     }
 
@@ -42,7 +61,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * Calculate the sum of values in an array
      * @return number
      */
-    function sum() {
+    public function sum() {
         return array_sum($this->array);
     }
 
@@ -52,7 +71,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * @param bool $strict If true will also compare the types
      * @return bool
      */
-    function has($needle, $strict = FALSE) {
+    public function has($needle, $strict = FALSE) {
         return in_array($needle, $this->array, $strict);
     }
 
@@ -60,7 +79,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * Set the internal pointer of an array to its first element
      * @return mixed The first array value
      */
-    function begin() {
+    public function begin() {
         return reset($this->array);
     }
     
@@ -68,7 +87,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * Return the current element in an array
      * @return mixed
      */
-    function current() {
+    public function current() {
         return current($this->array);
     }
     
@@ -76,7 +95,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * Advance the internal array pointer of an array
      * @return mixed The next array value
      */
-    function next() {
+    public function next() {
         return next($this->array);
     }
     
@@ -84,7 +103,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * Set the internal pointer of an array to its last element
      * @return mixed The last array value
      */
-    function end() {
+    public function end() {
         return end($this->array);
     }
     
@@ -92,7 +111,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * Return the current key and value pair from an array and advance the array cursor
      * @return Array|ArrayClass
      */
-    function each() {
+    public function each() {
         return each($this->array);
     }
 
@@ -102,7 +121,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * @param bool $strict If true will also compare the types
      * @return mixed
      */
-    function search($needle, $strict = FALSE) {
+    public function search($needle, $strict = FALSE) {
         return array_search($needle, $this->array, $strict);
     }
 
@@ -111,7 +130,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * @param mixed $key Value to check
      * @return bool
      */
-    function key_exists($key) {
+    public function key_exists($key) {
         return array_key_exists($key, $this->array);
     }
 
@@ -119,7 +138,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * Remove all elements from the array
      * @return Array|ArrayClass
      */
-    function clear() {
+    public function clear() {
         return $this->array = [];
     }
 
@@ -127,7 +146,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * Return the internal raw Array for this ArrayClass object
      * @return Array
      */
-    function raw() {
+    public function raw() {
         return $this->array;
     }
 
@@ -135,7 +154,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * Shift an element off the beginning of array
      * @return mixed
      */
-    function shift() {
+    public function shift() {
         return array_shift($this->array);
     }
     
@@ -144,7 +163,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * @param mixed $value1 First value to prepend
      * @return int
      */
-    function unshift($value1) {
+    public function unshift($value1) {
         $args = func_get_args();
         for ($i = count($args) - 1; $i >= 0; $i--) {
             array_unshift($this->array, $args[$i]);
@@ -156,7 +175,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * Pop the element off the end of array
      * @return mixed
      */
-    function pop() {
+    public function pop() {
         return array_pop($this->array);
     }
     
@@ -165,7 +184,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * @param mixed $value1 The first value to append
      * @return int
      */
-    function push($value1) {
+    public function push($value1) {
         $args = func_get_args();
         for ($i = 0; $i < count($args); $i++) {
             array_push($this->array, $args[$i]);
@@ -178,7 +197,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * @param string $glue Defaults to an empty string
      * @return string|StringClass
      */
-    function implode($glue = "") {
+    public function implode($glue = "") {
         return implode($this->a, $glue);
     }
 
@@ -187,7 +206,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * @param Callable $callback If this returns true for a value, the value is in the result array.
      * @return Array|ArrayClass
      */
-    function filter($callback = NULL) {
+    public function filter($callback = NULL) {
         return array_filter($this->array, $callback);
     }
 
@@ -197,7 +216,7 @@ class ArrayClass implements ArrayAccess, Countable {
      * @param int $mode If set to COUNT_RECURSIVE, will recursively count the array.
      * @return int
      */
-    function count($mode = COUNT_NORMAL) {
+    public function count($mode = COUNT_NORMAL) {
         return count($this->array, $mode);
     }
     
@@ -205,25 +224,28 @@ class ArrayClass implements ArrayAccess, Countable {
     /**
      * @ignore
      */
-    function offsetExists($offset) {
+    public function offsetExists($offset) {
         return isset($this->array[$offset]);
     }
+    
     /**
      * @ignore
      */
-    function offsetGet($offset) {
+    public function offsetGet($offset) {
         return $this->array[$offset];
     }
+    
     /**
      * @ignore
      */
-    function offsetSet($offset, $value) {
+    public function offsetSet($offset, $value) {
         $this->array[$offset] = $value;
     }
+    
     /**
      * @ignore
      */
-    function offsetUnset($offset) {
+    public function offsetUnset($offset) {
         unset($this->array[$offset]);
     }
 }
