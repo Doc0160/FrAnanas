@@ -36,11 +36,26 @@ class View{
         
         if(is_string($view)) {
             if(file_exists($this->path.$view)) {
+                set_error_handler(function($errno, $errstr, $errfile, $errline) {
+                    echo '<pre class="phperror phpview">';
+                    echo '['.$errno.'] '.$errstr;
+                    if(!empty($errfile)) {
+                        echo PHP_EOL.'File: '. $errfile;
+                    }
+                    if(!empty($errline)) {
+                        echo '; Line: ' .$errline;
+                    }
+                    echo '</pre>';
+                    return true;
+                });
+                
                 $f = function($view) use ($_DATA) {
                     extract($_DATA, EXTR_SKIP);
                     require($view);
                 };
                 $f($this->path.$view);
+                
+                restore_error_handler();
                 return;
             }
             throw new ViewException("View does not exist: ".$this->path.$view);

@@ -38,19 +38,44 @@ class Controller {
         
         if(is_string($controller)) {
             if(file_exists($this->path.$controller)) {
+                set_error_handler(function(...$args) {
+                    echo '<pre class="phperror phpcontroller">';
+                    trigger_error($args[1]);
+                    echo '</pre>';
+                    return true;
+                });
+                
                 $f = function($controller) use ($_DATA) {
                     extract($_DATA, EXTR_SKIP);
                     require($controller);
                 };
                 $f($this->path.$controller);
+
+                restore_error_handler();
                 return;
             }
             throw new ControlerException("Controller does not exist: ".$this->path.$controller);
+
         } else if(is_callable($controller)) {
+            set_error_handler(function($errno, $errstr, $errfile, $errline) {
+                echo '<pre class="phperror phpcontroller">';
+                echo '['.$errno.'] '.$errstr;
+                if(!empty($errfile)) {
+                    echo PHP_EOL.'File: '. $errfile;
+                }
+                if(!empty($errline)) {
+                    echo '; Line: ' .$errline;
+                }
+                echo '</pre>';
+                return true;
+            });
+            
             $f = function($controller) use ($_DATA) {
                 $controller($_DATA);
             };
             $f($controller);
+
+            restore_error_handler();
             return;
         }
         throw new ControllerException('You can only use functions and filename');

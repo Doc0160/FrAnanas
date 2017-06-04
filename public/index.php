@@ -16,13 +16,15 @@ $db->setConfig('mysql:host=localhost;'.
 
 $input = new Input();
 
+$profiler = new Profiler();
+
 $router->setNotFound(function($url) {
     global $view;    
     $view->display('404.php', ['url' => $url]);
 });
 
 $router->add('/', function() {
-    echo 'index.php !!! <a href="/test">test</a><br><pre>';
+    echo 'index.php !!! <a href="/test">test</a><br>';
     global $db;
     echo '<pre>';
     $db->select()->from('user')->limit(2)->orderby("id");

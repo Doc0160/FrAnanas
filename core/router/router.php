@@ -81,6 +81,7 @@ class Router {
     public function post(string $url, callable $action){
         return $this->addWithMethod("POST", $url, $action);
     }
+    
     /**
      * add a route with a method
      *
@@ -107,7 +108,7 @@ class Router {
         return $this;
     }
     /**
-     * add callback for 404 cases
+     * Add callback for 404 cases
      * @param callable $action
      */
     public function setNotFound(callable $action){
@@ -119,6 +120,19 @@ class Router {
      * Dispatch routes
      */
     public function dispatch(){
+        set_error_handler(function($errno, $errstr, $errfile, $errline) {
+            echo '<pre class="phperror phprouter">';
+            echo '['.$errno.'] '.$errstr;
+            if(!empty($errfile)) {
+                echo PHP_EOL.'File: '. $errfile;
+            }
+            if(!empty($errline)) {
+                echo '; Line: ' .$errline;
+            }
+            echo '</pre>';
+            return true;
+        });
+        
         $_url = $_SERVER['REQUEST_URI'];
         $_method = $_SERVER['REQUEST_METHOD'];
         
@@ -126,7 +140,9 @@ class Router {
             foreach ($this->routes[$_method] as $url => $action){
                 if(preg_match("#^".$url."$#i", $_url, $matches)){
                     array_shift($matches);
-                    return $action(...$matches);
+                    $ret = $action(...$matches);
+                    restore_error_handler();
+                    return $ret;
                 }
             }
         }
@@ -135,12 +151,15 @@ class Router {
             foreach ($this->routes['_'] as $url => $action) {
                 if(preg_match("#^".$url."$#i", $_url, $matches)){
                     array_shift($matches);
-                    return $action(...$matches);
+                    $ret = $action(...$matches);
+                    restore_error_handler();
+                    return $ret;
                 }
             }
         }
         
         call_user_func_array($this->notFound,[$_url]);
+        restore_error_handler();
     }
 
     /**
