@@ -163,7 +163,10 @@ class Router {
             }
             unset($url, $action);
         }
-        
+
+        if (!headers_sent()) {
+            header("HTTP/1.0 404 Not Found");
+        }
         call_user_func_array($this->notFound,[$_url]);
         restore_error_handler();
     }
@@ -174,9 +177,36 @@ class Router {
      * @param string $page Route to redirect to
      */
     public function redirect(string $page):void {
-        header('Location: '.$this->uri.$page);
+        if (!headers_sent()) {
+            header('Location: '.$this->uri.$page);
+            exit;
+        }
+        throw new RouterException('You cannot redirect after headers have been sent');
     }
 
+    /**
+     * @param $duration Duration in seconds or false to never cache
+     */
+    public function cache($duration = false) {
+        if(!$duration) {
+            $ts = gmdate("D, d M Y H:i:s") . " GMT";
+            if (!headers_sent()) {
+                header("Expires: $ts");
+                header("Last-Modified: $ts");
+                header("Pragma: no-cache");
+                header("Cache-Control: no-cache, must-revalidate");
+            }
+            
+        } else {
+            $ts = gmdate("D, d M Y H:i:s", time() + $duration) . " GMT";
+            if (!headers_sent()) {
+                header("Expires: $ts");
+                header("Pragma: cache");
+                header("Cache-Control: max-age=$duration");
+            }
+            
+        }
+    }
 }
 
 /**
