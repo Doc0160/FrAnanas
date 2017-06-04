@@ -1,16 +1,35 @@
 <?php
+/**
+ * View Class File
+ */
 
+/**
+ * View Class
+ */
 class View{
 
+    /** @ignore */
     private $context;
+    /** @ignore */
     private $path;
-    
+
+    /**
+     * Constructor
+     *
+     * @param string $path Path to the view files
+     * @param array $context
+     */
     public function __construct(string $path, array $context = []) {
         $this->path = $path;
         $this->sanitize($context);
         $this->context = $context;
     }
 
+    /**
+     * Sanatize array before passing it to the view
+     *
+     * @param array &$data
+     */
     private function sanitize(array &$data) {
         foreach($data as $key => &$value) {
             if(is_null($value) ||
@@ -29,7 +48,13 @@ class View{
             }
         }
     }
-    
+
+    /**
+     * Display a view
+     *
+     * @param $view
+     * @param array $_DATA
+     */
     public function display($view, array $_DATA = []) {
         $this->sanitize($_DATA);
         $_DATA = array_merge($this->context, $_DATA);
@@ -48,14 +73,17 @@ class View{
                     echo '</pre>';
                     return true;
                 });
-                
+
+                ob_start();
                 $f = function($view) use ($_DATA) {
                     extract($_DATA, EXTR_SKIP);
                     require($view);
                 };
                 $f($this->path.$view);
+                $out = ob_get_clean();
                 
                 restore_error_handler();
+                echo $out;
                 return;
             }
             throw new ViewException("View does not exist: ".$this->path.$view);
@@ -64,4 +92,7 @@ class View{
     }
 }
 
+/**
+   View Exception
+ */
 class ViewException extends Exception { }

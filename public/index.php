@@ -27,7 +27,7 @@ $router->add('/', function() {
     echo 'index.php !!! <a href="/test">test</a><br>';
     global $db;
     echo '<pre>';
-    $db->select()->from('user')->limit(2)->orderby("id");
+    $db->select()->from('user')->limit(5)->orderby("id");
     var_dump($db->req());
     var_dump($db->fetchAll());
     echo '</pre>';

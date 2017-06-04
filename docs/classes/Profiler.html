@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-446064869"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-84362610"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-446064869" class="accordion-body collapse in">
+            <div id="namespace-84362610" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -176,9 +176,11 @@
                                             </nav>
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
-                    <h1><small>\</small>Autoload</h1>
-                    <p><em>Class Autoloader</em></p>
-                    
+                    <h1><small>\</small>Profiler</h1>
+                    <p><em>Profiler Class</em></p>
+                    <p>For all your profiling needs
+Add a bar on top with profiling data
+Not meant to be used in production</p>
                     
                                         
                     <section id="summary">
@@ -196,12 +198,16 @@
                         </section>
                         <section class="row-fluid public">
                             <section class="span4">
-                                                                    <a href="../classes/Autoload.html#method___construct" class="">__construct()</a><br />
-                                                                    <a href="../classes/Autoload.html#method_register" class="">register()</a><br />
-                                                                    <a href="../classes/Autoload.html#method_load" class="">load()</a><br />
+                                                                    <a href="../classes/Profiler.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Profiler.html#method_log" class="">log()</a><br />
+                                                                    <a href="../classes/Profiler.html#method_display" class="">display()</a><br />
+                                                                    <a href="../classes/Profiler.html#method_gatherAll" class="">gatherAll()</a><br />
+                                                                    <a href="../classes/Profiler.html#method_getMicrotime" class="">getMicrotime()</a><br />
+                                                                    <a href="../classes/Profiler.html#method_getReadableTime" class="">getReadableTime()</a><br />
+                                                                    <a href="../classes/Profiler.html#method_getReadableFileSize" class="">getReadableFileSize()</a><br />
                                                             </section>
                             <section class="span4">
-                                                                    <em>No public properties found</em>
+                                                                    <a href="../classes/Profiler.html#property_css" class="">$css</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No constants found</em>
@@ -220,7 +226,11 @@
                         </section>
                         <section class="row-fluid private">
                             <section class="span4">
-                                                                    <em>No private methods found</em>
+                                                                    <a href="../classes/Profiler.html#method_gatherInputGet" class="">gatherInputGet()</a><br />
+                                                                    <a href="../classes/Profiler.html#method_gatherInputPost" class="">gatherInputPost()</a><br />
+                                                                    <a href="../classes/Profiler.html#method_gatherInputSession" class="">gatherInputSession()</a><br />
+                                                                    <a href="../classes/Profiler.html#method_gatherFiles" class="">gatherFiles()</a><br />
+                                                                    <a href="../classes/Profiler.html#method_return_bytes" class="">return_bytes()</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No private properties found</em>
@@ -236,12 +246,12 @@
                     
                     <dl>
                         <dt>File</dt>
-                            <dd><a href="../files/autoload.autoload.html"><div class="path-wrapper">autoload\autoload.php</div></a></dd>
+                            <dd><a href="../files/profiler.profiler.html"><div class="path-wrapper">profiler\profiler.php</div></a></dd>
                                                 <dt>Package</dt>
                             <dd><div class="namespace-wrapper">Default</div></dd>
                                                 <dt>Class hierarchy</dt>
                             <dd class="hierarchy">
-                                                                                                                                                                    <div class="namespace-wrapper">\Autoload</div>
+                                                                                                                                                                    <div class="namespace-wrapper">\Profiler</div>
                             </dd>
 
                         
@@ -257,7 +267,39 @@
             </div>
 
                         
-                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_css" name="property_css" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$css</h3>
+                <pre class="signature">$css : </pre>
+                <p><em>CSS that holds the toolbar together</em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                            
                                     <a id="methods" name="methods"></a>
             <div class="row-fluid">
                 <div class="span8 content class"><h2>Methods</h2></div>
@@ -270,15 +312,46 @@
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct(string  <span class="argument">$path = &#039;&#039;</span>) </pre>
+                <pre class="signature" style="margin-right: 54px;">__construct() </pre>
                 <p><em>Constructor</em></p>
                 
 
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_log" name="method_log" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">log()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">log(string  <span class="argument">$name</span>, string  <span class="argument">$msg = null</span>) </pre>
+                <p><em>Log</em></p>
+                
+
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
                                 <td>string</td>
-                                <td>$path </td>
+                                <td>$name </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$msg </td>
                                 <td></td>
                             </tr>
                                             </table>
@@ -300,27 +373,14 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_register" name="method_register" class="anchor"></a>
+            <a id="method_display" name="method_display" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">register()</h3>
+                <h3 class="public ">display()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">register(string  <span class="argument">$name</span>,   <span class="argument">$loader = false</span>) </pre>
-                <p><em>Register new thing to be loaded</em></p>
+                <pre class="signature" style="margin-right: 54px;">display() </pre>
+                <p><em>Display the HTML</em></p>
                 
 
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$name </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$loader </td>
-                                <td></td>
-                            </tr>
-                                            </table>
                 
                 
                 				
@@ -339,22 +399,14 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_load" name="method_load" class="anchor"></a>
+            <a id="method_gatherAll" name="method_gatherAll" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">load()</h3>
+                <h3 class="public ">gatherAll()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">load(string  <span class="argument">$name</span>) </pre>
-                <p><em>To be called be the autoload thingy</em></p>
+                <pre class="signature" style="margin-right: 54px;">gatherAll() </pre>
+                <p><em>Gather Data</em></p>
                 
 
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$name </td>
-                                <td></td>
-                            </tr>
-                                            </table>
                 
                 
                 				
@@ -371,16 +423,271 @@
         </aside>
     </div>
 
-                                                                    </div>
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getMicrotime" name="method_getMicrotime" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getMicrotime()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getMicrotime(boolean  <span class="argument">$at_start = false</span>) : float</pre>
+                <p><em>get microtime.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$at_start </td>
+                                <td><p>set to true if this microtime is get at the very beginning of the app. this can allow newer php version to use $_SERVER['REQUEST_TIME_FLOAT'];</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    float
+                                            &mdash; <p>microtime in float.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getReadableTime" name="method_getReadableTime" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getReadableTime()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getReadableTime(integer  <span class="argument">$time</span>) : string</pre>
+                <p><em>get readable time.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$time </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getReadableFileSize" name="method_getReadableFileSize" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getReadableFileSize()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getReadableFileSize(integer  <span class="argument">$size</span>, string  <span class="argument">$retstring = null</span>) : string</pre>
+                <p><em>get readable file size.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$size </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$retstring </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_gatherInputGet" name="method_gatherInputGet" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">gatherInputGet()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">gatherInputGet() </pre>
+                <p><em>Gather GET</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_gatherInputPost" name="method_gatherInputPost" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">gatherInputPost()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">gatherInputPost() </pre>
+                <p><em>Gather POST</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_gatherInputSession" name="method_gatherInputSession" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">gatherInputSession()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">gatherInputSession() </pre>
+                <p><em>Gather SESSION</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_gatherFiles" name="method_gatherFiles" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">gatherFiles()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">gatherFiles() </pre>
+                <p><em>Gather Included Files</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_return_bytes" name="method_return_bytes" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">return_bytes()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">return_bytes(  <span class="argument">$size_str</span>) : \Max</pre>
+                <p><em>Return Bytes from format &quot;128Mo&quot;</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$size_str </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Max
+                                            &mdash; <p>RAM Size</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
     </section>
 
     <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">autoload.php</h3>
+            <h3 id="source-view-label">profiler.php</h3>
         </div>
         <div class="modal-body">
-            <pre data-src="../files/autoload\autoload.php.txt" class="language-php line-numbers"></pre>
+            <pre data-src="../files/profiler\profiler.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 

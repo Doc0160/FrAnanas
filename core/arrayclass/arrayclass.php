@@ -6,8 +6,17 @@
  * Easy array manipulation class
  */
 class ArrayClass implements ArrayAccess, Countable {
+    /**
+     * Array manipulated by ArrayClass
+     * @var array $array
+     */
     public $array;
-    
+
+    /**
+     * Constructor
+     *
+     * @param array &$array
+     */
     public function __construct(array &$array) {
         $this->array = &$array;
     }
@@ -193,15 +202,27 @@ class ArrayClass implements ArrayAccess, Countable {
     }
     
     // ArrayAccess
+    /**
+     * @ignore
+     */
     function offsetExists($offset) {
         return isset($this->array[$offset]);
     }
+    /**
+     * @ignore
+     */
     function offsetGet($offset) {
         return $this->array[$offset];
     }
+    /**
+     * @ignore
+     */
     function offsetSet($offset, $value) {
         $this->array[$offset] = $value;
     }
+    /**
+     * @ignore
+     */
     function offsetUnset($offset) {
         unset($this->array[$offset]);
     }

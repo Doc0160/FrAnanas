@@ -1,4 +1,7 @@
 <?php
+/**
+ * Router Class File
+ */
 
 /**
  *  Router class
@@ -13,7 +16,8 @@ class Router {
     private $uri;
 
     /**
-     * __construct
+     * Constructor
+     * 
      * @param string $uri
      */
     public function __construct(string $uri = ''){
@@ -137,7 +141,7 @@ class Router {
         $_method = $_SERVER['REQUEST_METHOD'];
         
         if(isset($this->routes[$_method])) {
-            foreach ($this->routes[$_method] as $url => $action){
+            foreach($this->routes[$_method] as $url => $action){
                 if(preg_match("#^".$url."$#i", $_url, $matches)){
                     array_shift($matches);
                     $ret = $action(...$matches);
@@ -145,10 +149,11 @@ class Router {
                     return $ret;
                 }
             }
+            unset($url, $action);
         }
 
         if(isset($this->routes['_'])) {
-            foreach ($this->routes['_'] as $url => $action) {
+            foreach($this->routes['_'] as $url => $action) {
                 if(preg_match("#^".$url."$#i", $_url, $matches)){
                     array_shift($matches);
                     $ret = $action(...$matches);
@@ -156,6 +161,7 @@ class Router {
                     return $ret;
                 }
             }
+            unset($url, $action);
         }
         
         call_user_func_array($this->notFound,[$_url]);
@@ -163,12 +169,17 @@ class Router {
     }
 
     /**
+     * Redirect
      * 
+     * @param string $page Route to redirect to
      */
-    public function redirect(string $page) {
+    public function redirect(string $page):void {
         header('Location: '.$this->uri.$page);
     }
 
 }
 
+/**
+ * Router Exception
+ */
 class RouterException extends Exception { }

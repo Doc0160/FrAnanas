@@ -2,6 +2,8 @@
 
 /**
  * Session Class
+ *
+ * Aceesible as an array
  */
 class Session implements ArrayAccess, Countable {
     /** @ignore */
@@ -60,7 +62,11 @@ class Session implements ArrayAccess, Countable {
     public function offsetUnset($offset): void {
         unset($_SESSION[$offset]);
     }
-
+    
+    public function count():int {
+        return count($_SESSION);
+    }
+    
     /*public function has_data(): bool {
        return isset($_SESSION) && !empty($_SESSION);
        }*/
@@ -114,15 +120,17 @@ class Session implements ArrayAccess, Countable {
         $this->start();
     }
 
-    public function count():int {
-        return count($_SESSION);
-    } 
-    
+    /**
+     * Get Session CSRF token
+     */
     public function get_csrf_token():string {
         if (!session_id()) $this->start();
         return $_SESSION["__ANTI_CSRF_TOKEN"];
     }
 
+    /**
+     * Check if CSRF token exist is wright
+     */
     public function is_csrf_protected($token = ""):bool {
         if (empty($token) && isset($_REQUEST["csrftoken"])) {
             $token = $_REQUEST["csrftoken"];

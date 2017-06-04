@@ -21,7 +21,15 @@ $cookie = new Cookie();
 $db = new DB();
 
 // TODO(doc): find a place for that
-function is_serialized( $data, $strict = true ) {
+/**
+ * Check if serialized
+ * Fairly certain but not 100%
+ *
+ * @param $data
+ * @param $strict
+ * @return bool
+ */
+function is_serialized( $data, $strict = true ):bool {
     // if it isn't a string, it isn't serialized.
     if ( ! is_string( $data ) ) {
         return false;
@@ -76,6 +84,12 @@ function is_serialized( $data, $strict = true ) {
     return false;
 }
 
+/**
+ * Try to unserialize
+ *
+ * @param $original
+ * @return mixed
+ */
 function maybe_unserialize( $original ) {
     if ( is_serialized( $original ) ) // don't attempt to unserialize data that wasn't serialized going in
         return @unserialize( $original );
