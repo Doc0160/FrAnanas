@@ -68,7 +68,7 @@ class Profiler {
     border: none;
 }
 body {
-    margin-top: 5em !important;
+    margin-top: 3em !important;
 }
 </style>';
 
