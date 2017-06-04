@@ -282,7 +282,7 @@ body {
     }
     
     /**
-     * get microtime.
+     * Get microtime.
      * 
      * @param boolean $at_start set to true if this microtime is get at the very beginning of the app. this can allow newer php version to use $_SERVER['REQUEST_TIME_FLOAT'];
      * @return float microtime in float.
@@ -297,7 +297,7 @@ body {
     }
 
     /**
-     * get readable time.
+     * Get readable time.
      * 
      * @param integer $time
      * @return string
@@ -320,7 +320,7 @@ body {
     }
 
     /**
-     * get readable file size.
+     * Get readable file size.
      * 
      * @param int $size
      * @param string $retstring
