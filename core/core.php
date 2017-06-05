@@ -11,14 +11,16 @@ require('autoload/autoload.php');
 $autoloader = new Autoload('../');
 spl_autoload_register([$autoloader, 'load']);
 
+if(defined('PROFILER')) {
+    $profiler = new Profiler();
+}
+
 $view = new View('../views/');
 $controller = new Controller('../controllers/');
 $router = new Router();
 
 $session = new Session();
 $cookie = new Cookie();
-
-$db = new DB();
 
 // TODO(doc): find a place for that
 /**

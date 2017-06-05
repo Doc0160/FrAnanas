@@ -1,7 +1,7 @@
 # FrAnanas v1.3
 ![frananas](frananas.png)
 
-PHP framework that loves pineapples
+PHP framework that loves pineapples.
 
 [Documentation](https://doc0160.github.io/FrAnanas/)
 
@@ -25,8 +25,8 @@ PHP framework that loves pineapples
     * Better [Route], [View], [Controller]
     * Added experimental [DB]
 * (WIP) [v1.3](https://github.com/Doc0160/FrAnanas/tree/v1.3)
-    * 
-    * 
+    * PHPUnit partial test for [ArrayClass]
+    * Removed [Input]
     * 
     * 
     

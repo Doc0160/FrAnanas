@@ -39,24 +39,32 @@ class Autoload {
     }
     
     /**
-     * To be called be the autoload thingy
+     * To be called be load a class/file/function sets
      * @param string $name
      */
     public function load(string $name) : bool {
         $name = strtolower($name);
-        $filepath = $this->path.'core/'.$name.'/'.$name.'.php';
         
         if(!empty($this->autoloadable[$name])){
             return $this->autoloadable[$name]($name);
         }
         
+        $filepath = $this->path.'core/'.$name.'/'.$name.'.php';
         if(file_exists($filepath)){
-            return require($filepath);
+            return require_once($filepath);
+        }
+        
+        $filepath = $this->path.'core/'.$name.'.php';
+        if(file_exists($filepath)){
+            return require_once($filepath);
         }
         
         throw new AutoloadException($name.' is not loaded or registred for autoloading');
     }
 }
 
+/**
+ * Autoload Exception
+ */
 class AutoloadException extends Exception { }
 

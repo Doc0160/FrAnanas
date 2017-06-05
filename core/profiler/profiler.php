@@ -7,7 +7,9 @@
  * Profiler Class
  *
  * For all your profiling needs
+ *
  * Add a bar on top with profiling data
+ *
  * Not meant to be used in production
  */
 class Profiler {
@@ -73,32 +75,90 @@ body {
 }
 </style>';
 
+    private $assert = [];
+    private $included_files = [];
+    private $get = [];
+    private $post = [];
+    private $session = [];
+    private $cookie = [];
+    private $autoload = [];
+    private $start_time = 0;
+    private $end_time = 0;
+    
     /**
      * Constructor
+     *
+     * This constructor use:
+     * - assert_options
+     * - register_shutdown_function
+     * - spl_autoload_register
+     *
      */
     public function __construct() {
         $this->start_time = $this->getMicrotime(true);
-        $this->log = [];
+        
+        //NOTE(doc): set up assertions
+        assert_options(ASSERT_ACTIVE, 1);
+        assert_options(ASSERT_WARNING, 0);
+        assert_options(ASSERT_BAIL, 0);
+        assert_options(ASSERT_QUIET_EVAL, 1);
+        assert_options(ASSERT_CALLBACK, array($this, 'assert'));
+        
+        //NOTE(doc): set up autoload intercept
+        spl_autoload_register([$this, 'autoload'], false, true);
+        
+        //NOTE(doc): register display after the script
         register_shutdown_function(array($this, 'display'));
     }
 
     /**
-     * Log 
+     * Callback for autoload system
      *
-     * @param string $name
-     * @param string $msg
+     * Never call this function directly
+     * 
+     * @param $class
      */
-    public function log(string $name, string $msg = null):void {
-        if($msg === null) {
-            $msg = $name;
-            $name = "Default";
-        }
-        $this->log['items'][] = [
-            'name' => $name,
-            'value' => $msg,
+    public function autoload(string $class):bool {
+        $this->autoload['items'][] = [
+            'name' => (isset($this->autoload['items'])) ?
+                             count($this->autoload['items']) : 0,
+            'value' => $class,
+        ];
+        return false;
+    }
+
+    /**
+     * Callback for assert system
+     * 
+     * Never call this function directly
+     * 
+     * Just use ```assert(true==false, 'I want to know if right is wrong');```
+     *
+     * @param $file
+     * @param $line
+     * @param $code
+     * @param $desc
+     *
+     * @see http://php.net/manual/en/function.assert.php
+     */
+    public function assert(string $file, $line, $code, $desc = null):void {
+        $this->assert['items'][] = [
+            'name' => $file . ', ' . $line,
+            'value' => (!empty($code)) ? $code . ' ' : '' .
+                                                       (!empty($desc)) ? $desc : '',
         ];
     }
 
+    /**
+     * Force assert fail to be fatal
+     *
+     * @param bool $fatal if true, assert fail becomes fatal
+     */
+    public function setAssertFatal(bool $fatal = false):void {
+        assert_options(ASSERT_BAIL, 1);
+        assert_options(ASSERT_WARNING, 1);
+    }
+    
     /**
      * Display the HTML
      */
@@ -114,8 +174,10 @@ body {
                   . ' / ' .
                     $this->getReadableTime(ini_get('max_execution_time')*1000),
             'Included Files' => $this->included_files,
-            'Log' => $this->log,
+            'Asserts' => $this->assert,
+            'Autoload' => $this->autoload,
             'SESSION' => $this->session,
+            'COOKIE' => $this->cookie,
             'GET' => $this->get,
             'POST' => $this->post,
         ];
@@ -251,6 +313,24 @@ body {
             'name' => 'SESSION ID',
             'value' => session_id(),
         ];
+    }
+
+    
+    /**
+     * Gather COOKIE
+     */
+    private function gatherInputCookie():void {
+        $section_data_array = array();
+        if (isset($_COOKIE) && is_array($_COOKIE)) {
+            foreach ($_COOKIE as $name => $value) {
+                $section_data_array[] = [
+                    'name' => $name,
+                    'value' => $value,
+                ];
+            }
+            unset($name, $value);
+            $this->session['items'] = $section_data_array;
+        }
     }
 
     /**

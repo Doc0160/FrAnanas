@@ -7,7 +7,9 @@
  * Profiler Class
  *
  * For all your profiling needs
+ *
  * Add a bar on top with profiling data
+ *
  * Not meant to be used in production
  */
 class Profiler {
@@ -73,12 +75,42 @@ body {
 }
 </style>';
 
+    private $log = [];
+    private $assert = [];
+    private $included_files = [];
+    private $get = [];
+    private $post = [];
+    private $session = [];
+    private $autoload = [];
+    private $start_time = 0;
+    private $end_time = 0;
+    
     /**
      * Constructor
+     *
+     * Use
+     * - Set assert_options
+     * - Set register_shutdown_function
+     *
      */
     public function __construct() {
         $this->start_time = $this->getMicrotime(true);
-        $this->log = [];
+
+        //NOTE(doc): set up assertions
+        assert_options(ASSERT_ACTIVE, 1);
+        assert_options(ASSERT_WARNING, 0);
+        assert_options(ASSERT_BAIL, 0);
+        assert_options(ASSERT_QUIET_EVAL, 1);
+        assert_options(ASSERT_CALLBACK, array($this, 'assert'));
+
+        /*spl_autoload_register(function($class) {
+           var_dump($class);
+           return false;
+           }, false, true);*/
+
+        spl_autoload_register([$this, 'autoload'], false, true);
+        
+        //NOTE(doc): register display after the script
         register_shutdown_function(array($this, 'display'));
     }
 
@@ -100,6 +132,52 @@ body {
     }
 
     /**
+     * Callback for autoload system
+     *
+     * Never call this function directly
+     * 
+     * @param $class
+     */
+    public function autoload(string $class):bool {
+        $this->autoload['items'][] = [
+            'name' => count($this->autoload['items']),
+            'value' => $class,
+        ];
+        return false;
+    }
+
+    /**
+     * Callback for assert system
+     * 
+     * Never call this function directly
+     * 
+     * Just use ```assert(true==false, 'I want to know if right is wrong');```
+     *
+     * @param $file
+     * @param $line
+     * @param $code
+     * @param $desc
+     *
+     * @see http://php.net/manual/en/function.assert.php
+     */
+    public function assert(string $file, $line, $code, $desc = null):void {
+        $this->assert['items'][] = [
+            'name' => $file . ', ' . $line,
+            'value' => (!empty($code)) ? $code . ' ' : '') .
+                                   (!empty($desc)) ? $desc : ''),
+        ];
+    }
+
+    /**
+     * Force assert fail to be fatal
+     * @param bool $fatal if true, assert fail becomes fatal
+     */
+    public function setAssertFatal(bool $fatal = false):void {
+        assert_options(ASSERT_BAIL, 1);
+        assert_options(ASSERT_WARNING, 1);
+    }
+    
+    /**
      * Display the HTML
      */
     public function display():void {
@@ -115,6 +193,8 @@ body {
                     $this->getReadableTime(ini_get('max_execution_time')*1000),
             'Included Files' => $this->included_files,
             'Log' => $this->log,
+            'Asserts' => $this->assert,
+            'Autoload' => $this->autoload,
             'SESSION' => $this->session,
             'GET' => $this->get,
             'POST' => $this->post,
