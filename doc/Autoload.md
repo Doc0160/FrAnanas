@@ -4,14 +4,14 @@
  * Class Autoloader
  */
 ```
-- __construct(string $path): 
+- __construct(string $path)
 ```
 /**
      * Constructor
      * @param string $path
      */
 ```
-- register(string $name, $loader): 
+- register(string $name, $loader)
 ```
 /**
      * Register new thing to be loaded

@@ -6,7 +6,7 @@
  * $users = $db->select('*')->from('users')->where('id>1')->limit(100)->orderby('username')->fetchAll();
  */
 ```
-- __construct(): 
+- __construct()
 ```
 /** @ignore */
 ```
@@ -26,43 +26,43 @@
 ```
 
 ```
-- query(string $query): 
+- query(string $query)
 ```
 /**
      * Set SQL Query
      */
 ```
-- select(string $what): 
+- select(string $what)
 ```
 /**
      * $users = $db->select('*')->from('users')->where('id>1')->limit(100)->orderby('username')->fetchAll();
      */
 ```
-- from(string $what): 
+- from(string $what)
 ```
 /**
      * $users = $db->select('*')->from('users')->where('id>1')->limit(100)->orderby('username')->fetchAll();
      */
 ```
-- where(string $what): 
+- where(string $what)
 ```
 /**
      * $users = $db->select('*')->from('users')->where('id>1')->limit(100)->orderby('username')->fetchAll();
      */
 ```
-- limit(string $what): 
+- limit(string $what)
 ```
 /**
      * $users = $db->select('*')->from('users')->where('id>1')->limit(100)->orderby('username')->fetchAll();
      */
 ```
-- orderby(string $what): 
+- orderby(string $what)
 ```
 /**
      * $users = $db->select('*')->from('users')->where('id>1')->limit(100)->orderby('username')->fetchAll();
      */
 ```
-- insert(string $what, array $values): 
+- insert(string $what, array $values)
 ```
 
 ```
@@ -72,11 +72,11 @@
      * Get SQL Query
      */
 ```
-- fetchAll(): 
+- fetchAll()
 ```
 
 ```
-- fetch(): 
+- fetch()
 ```
 
 ```

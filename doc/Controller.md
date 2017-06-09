@@ -4,7 +4,7 @@
  * Controller Class
  */
 ```
-- __construct(string $path, array $context): 
+- __construct(string $path, array $context)
 ```
 /**
      * Constructor
@@ -12,11 +12,11 @@
      * @param array $context
      */
 ```
-- __debugInfo(): 
+- __debugInfo()
 ```
 /** @ignore */
 ```
-- execute($controller, array $_DATA): 
+- execute($controller, array $_DATA)
 ```
 /**
      * Execute a controller file

@@ -1,4 +1,54 @@
 <?php
+
+function do_docComment(&$file, &$thing) {
+    fwrite($file, '```');
+    fwrite($file, PHP_EOL);
+    fwrite($file, $thing->getDocComment());
+    fwrite($file, PHP_EOL);
+    fwrite($file, '```');
+    fwrite($file, PHP_EOL);
+}
+
+function do_class(&$file, &$class) {
+    fwrite($file, '# ');
+    if($class->isFinal()) {
+        fwrite($file, 'final ');
+    }
+    fwrite($file, $class->getName());
+    fwrite($file, PHP_EOL);
+    do_docComment($file, $class);
+}
+
+function do_parameter(&$file, &$parameter) {
+    if($parameter->hasType()) {
+        fwrite($file, $parameter->getType());
+        fwrite($file, ' ');
+    }
+    fwrite($file, '$'.$parameter->getName());
+}
+
+function do_method_parameters(&$file, &$method) {
+    if($method->getNumberOfParameters()) {
+        $parameters = $method->getParameters();
+        $first = true;
+        foreach($parameters as $parameter) {
+            if($first) {
+                $first = false;
+            } else {
+                fwrite($file, ', ');
+            }
+            do_parameter($file, $parameter);
+            unset($parameter);
+        }
+        unset($parameters);
+    }
+}
+
+function do_full_class(&$file, &$class) {
+    do_class($file, $class);
+    
+}
+
 $classes = get_declared_classes();
 
 $dirs = glob('core/*', GLOB_ONLYDIR);
@@ -21,73 +71,30 @@ foreach($new_classes as $new_class) {
     $file = fopen("doc/".$new_class.".md", "w");
     $class = new ReflectionClass($new_class);
     unset($new_class);
-    fwrite($file, '# ');
-    if($class->isFinal()) {
-        fwrite($file, 'final ');
-    }
-    fwrite($file, $class->getName());
-    fwrite($file, PHP_EOL);
-    fwrite($file, '```');
-    fwrite($file, PHP_EOL);
-    fwrite($file, $class->getDocComment());
-    fwrite($file, PHP_EOL);
-    fwrite($file, '```');
-    fwrite($file, PHP_EOL);
+    do_class($README, $class);
     
-    if($class->isFinal()) {
-        fwrite($README, 'final ');
-    }
-    fwrite($README, '# ');
-    fwrite($README, '[');
-    fwrite($README, $class->getName());
-    fwrite($README, '](');
-    fwrite($README, $class->getName());
-    fwrite($README, '.md)');
-    fwrite($README, PHP_EOL);
-    fwrite($README, '```');
-    fwrite($README, PHP_EOL);
-    fwrite($README, $class->getDocComment());
-    fwrite($README, PHP_EOL);
-    fwrite($README, '```');
-    fwrite($README, PHP_EOL);
+    do_class($file, $class);
     
     $methods = $class->getMethods(); 
     foreach ($methods as $method) {
         fwrite($file, '- ');
         fwrite($file, $method->getName());
         fwrite($file, '(');
-        if($method->getNumberOfParameters()) {
-            $parameters = $method->getParameters();
-            $first = true;
-            foreach($parameters as $parameter) {
-                if($first) {
-                    $first = false;
-                } else {
-                    fwrite($file, ', ');
-                }
-                if($parameter->hasType()) {
-                    fwrite($file, $parameter->getType());
-                    fwrite($file, ' ');
-                }
-                fwrite($file, '$'.$parameter->getName());
-            }
-            unset($parameters);
-        }
+        do_method_parameters($file, $method);
         fwrite($file, ')');
-        fwrite($file, ': ');
-        fwrite($file, $method->getReturnType());
+        if($method->hasReturnType()) {
+            fwrite($file, ': ');
+            fwrite($file, $method->getReturnType());
+        }
         fwrite($file, PHP_EOL);
-        fwrite($file, '```');
-        fwrite($file, PHP_EOL);
-        fwrite($file, $method->getDocComment());
-        fwrite($file, PHP_EOL);
-        fwrite($file, '```');
-        fwrite($file, PHP_EOL);
+        do_docComment($file, $method);
     }
     unset($methods);
-    fwrite($file, PHP_EOL);
     fwrite($README, PHP_EOL);
+    
+    fwrite($file, PHP_EOL);
     fclose($file);
+    unset($file);
 }
 fclose($README);
 

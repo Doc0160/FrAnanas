@@ -17,7 +17,7 @@
  * ```
  */
 ```
-- __construct($value): 
+- __construct($value)
 ```
 /**
      * Creates a new value of some type
@@ -27,13 +27,13 @@
      * @throws UnexpectedValueException if incompatible type is given.
      */
 ```
-- getValue(): 
+- getValue()
 ```
 /**
      * @return mixed
      */
 ```
-- getKey(): 
+- getKey()
 ```
 /**
      * Returns the enum key (i.e. the constant name).
@@ -41,13 +41,13 @@
      * @return mixed
      */
 ```
-- __toString(): 
+- __toString()
 ```
 /**
      * @return string
      */
 ```
-- equals(Enum $enum): 
+- equals(Enum $enum)
 ```
 /**
      * Compares one Enum with another.
@@ -57,7 +57,7 @@
      * @return bool True if Enums are equal, false if not equal
      */
 ```
-- keys(): 
+- keys()
 ```
 /**
      * Returns the names (keys) of all constants in the Enum class
@@ -65,7 +65,7 @@
      * @return array
      */
 ```
-- values(): 
+- values()
 ```
 /**
      * Returns instances of the Enum class of all Enum constants
@@ -73,7 +73,7 @@
      * @return static[] Constant name in key, Enum instance in value
      */
 ```
-- toArray(): 
+- toArray()
 ```
 /**
      * Returns all possible values as an array
@@ -81,7 +81,7 @@
      * @return array Constant name in key, constant value in value
      */
 ```
-- isValid($value): 
+- isValid($value)
 ```
 /**
      * Check if is valid enum value
@@ -91,7 +91,7 @@
      * @return bool
      */
 ```
-- isValidKey($key): 
+- isValidKey($key)
 ```
 /**
      * Check if is valid enum key
@@ -101,7 +101,7 @@
      * @return bool
      */
 ```
-- search($value): 
+- search($value)
 ```
 /**
      * Return key for value
@@ -111,7 +111,7 @@
      * @return mixed
      */
 ```
-- __callStatic($name, $arguments): 
+- __callStatic($name, $arguments)
 ```
 /**
      * Returns a value when called statically like so: MyEnum::SOME_VALUE() given SOME_VALUE is a class constant

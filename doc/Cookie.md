@@ -2,19 +2,19 @@
 ```
 
 ```
-- __construct(int $duration): 
+- __construct(int $duration)
 ```
 
 ```
-- __get(string $name): 
+- __get(string $name)
 ```
 
 ```
-- __set(string $name, string $value): 
+- __set(string $name, string $value)
 ```
 
 ```
-- __unset(string $name): 
+- __unset(string $name)
 ```
 
 ```
@@ -22,11 +22,11 @@
 ```
 
 ```
-- __debugInfo(): 
+- __debugInfo()
 ```
 
 ```
-- setWithDuration(string $name, string $value, int $duration): 
+- setWithDuration(string $name, string $value, int $duration)
 ```
 
 ```

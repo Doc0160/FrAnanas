@@ -4,47 +4,47 @@
  * Autoload Exception
  */
 ```
-- __clone(): 
+- __clone()
 ```
 
 ```
-- __construct($message, $code, $previous): 
+- __construct($message, $code, $previous)
 ```
 
 ```
-- __wakeup(): 
+- __wakeup()
 ```
 
 ```
-- getMessage(): 
+- getMessage()
 ```
 
 ```
-- getCode(): 
+- getCode()
 ```
 
 ```
-- getFile(): 
+- getFile()
 ```
 
 ```
-- getLine(): 
+- getLine()
 ```
 
 ```
-- getTrace(): 
+- getTrace()
 ```
 
 ```
-- getPrevious(): 
+- getPrevious()
 ```
 
 ```
-- getTraceAsString(): 
+- getTraceAsString()
 ```
 
 ```
-- __toString(): 
+- __toString()
 ```
 
 ```

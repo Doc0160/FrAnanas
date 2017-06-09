@@ -6,11 +6,11 @@
  * Aceesible as an array
  */
 ```
-- __construct(string $name, int $timeout): 
+- __construct(string $name, int $timeout)
 ```
 
 ```
-- __get(string $name): 
+- __get(string $name)
 ```
 
 ```
@@ -26,7 +26,7 @@
 ```
 
 ```
-- __debugInfo(): 
+- __debugInfo()
 ```
 /** @ignore */
 ```
@@ -34,7 +34,7 @@
 ```
 
 ```
-- offsetGet($offset): 
+- offsetGet($offset)
 ```
 
 ```

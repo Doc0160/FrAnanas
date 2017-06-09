@@ -1,4 +1,4 @@
-# [ArrayClass](ArrayClass.md)
+# ArrayClass
 ```
 /**
  * Class ArrayClass
@@ -7,47 +7,47 @@
  */
 ```
 
-# [Autoload](Autoload.md)
+# Autoload
 ```
 /**
  * Class Autoloader
  */
 ```
 
-# [AutoloadException](AutoloadException.md)
+# AutoloadException
 ```
 /**
  * Autoload Exception
  */
 ```
 
-# [Controller](Controller.md)
+# Controller
 ```
 /**
  * Controller Class
  */
 ```
 
-# [ControllerException](ControllerException.md)
+# ControllerException
 ```
 /**
  * Controller Exception
  */
 ```
 
-# [Cookie](Cookie.md)
+# Cookie
 ```
 
 ```
 
-final # [Database](Database.md)
+# final Database
 ```
 /**
  * @deprecated
  */
 ```
 
-# [DB](DB.md)
+# DB
 ```
 /**
  * DB Class
@@ -56,7 +56,7 @@ final # [Database](Database.md)
  */
 ```
 
-# [Enum](Enum.md)
+# Enum
 ```
 /**
  * Base Enum class
@@ -76,7 +76,7 @@ final # [Database](Database.md)
  */
 ```
 
-# [Profiler](Profiler.md)
+# Profiler
 ```
 /**
  * Profiler Class
@@ -89,21 +89,21 @@ final # [Database](Database.md)
  */
 ```
 
-# [Router](Router.md)
+# Router
 ```
 /**
  *  Router class
  */
 ```
 
-# [RouterException](RouterException.md)
+# RouterException
 ```
 /**
  * Router Exception
  */
 ```
 
-# [Session](Session.md)
+# Session
 ```
 /**
  * Session Class
@@ -112,14 +112,14 @@ final # [Database](Database.md)
  */
 ```
 
-# [View](View.md)
+# View
 ```
 /**
  * View Class
  */
 ```
 
-# [ViewException](ViewException.md)
+# ViewException
 ```
 /**
    View Exception

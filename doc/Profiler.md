@@ -10,7 +10,7 @@
  * Not meant to be used in production
  */
 ```
-- __construct(): 
+- __construct()
 ```
 /**
      * Constructor
@@ -99,7 +99,7 @@
      * Gather Included Files
      */
 ```
-- getMicrotime($at_start): 
+- getMicrotime($at_start)
 ```
 /**
      * Get microtime.
@@ -108,7 +108,7 @@
      * @return float microtime in float.
      */
 ```
-- getReadableTime($time): 
+- getReadableTime($time)
 ```
 /**
      * Get readable time.
@@ -117,7 +117,7 @@
      * @return string
      */
 ```
-- getReadableFileSize($size, $retstring): 
+- getReadableFileSize($size, $retstring)
 ```
 /**
      * Get readable file size.

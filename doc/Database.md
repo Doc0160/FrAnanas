@@ -4,7 +4,7 @@
  * @deprecated
  */
 ```
-- __construct(): 
+- __construct()
 ```
 /** @ignore */
 ```
@@ -12,7 +12,7 @@
 ```
 
 ```
-- setConfig(string $dsn, string $username, string $password, array $options): 
+- setConfig(string $dsn, string $username, string $password, array $options)
 ```
 
 ```

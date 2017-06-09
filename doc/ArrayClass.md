@@ -6,7 +6,7 @@
  * Easy array manipulation class
  */
 ```
-- __construct(array $array): 
+- __construct(array $array)
 ```
 /**
      * Constructor
@@ -22,7 +22,7 @@
 ```
 
 ```
-- keys(): 
+- keys()
 ```
 /**
      * Return all the keys of an array.
@@ -30,21 +30,21 @@
      * @return Array|ArrayClass
      */
 ```
-- values(): 
+- values()
 ```
 /**
      * Return all the values of an array
      * @return Array|ArrayClass
      */
 ```
-- sum(): 
+- sum()
 ```
 /**
      * Calculate the sum of values in an array
      * @return number
      */
 ```
-- has($needle, $strict): 
+- has($needle, $strict)
 ```
 /**
      * Checks if a value exists in an array
@@ -53,42 +53,42 @@
      * @return bool
      */
 ```
-- begin(): 
+- begin()
 ```
 /**
      * Set the internal pointer of an array to its first element
      * @return mixed The first array value
      */
 ```
-- current(): 
+- current()
 ```
 /**
      * Return the current element in an array
      * @return mixed
      */
 ```
-- next(): 
+- next()
 ```
 /**
      * Advance the internal array pointer of an array
      * @return mixed The next array value
      */
 ```
-- end(): 
+- end()
 ```
 /**
      * Set the internal pointer of an array to its last element
      * @return mixed The last array value
      */
 ```
-- each(): 
+- each()
 ```
 /**
      * Return the current key and value pair from an array and advance the array cursor
      * @return Array|ArrayClass
      */
 ```
-- search($needle, $strict): 
+- search($needle, $strict)
 ```
 /**
      * Searches the array for a given value and returns the corresponding key if successful
@@ -97,7 +97,7 @@
      * @return mixed
      */
 ```
-- key_exists($key): 
+- key_exists($key)
 ```
 /**
      * Checks if the given key or index exists in the array
@@ -105,28 +105,28 @@
      * @return bool
      */
 ```
-- clear(): 
+- clear()
 ```
 /**
      * Remove all elements from the array
      * @return Array|ArrayClass
      */
 ```
-- raw(): 
+- raw()
 ```
 /**
      * Return the internal raw Array for this ArrayClass object
      * @return Array
      */
 ```
-- shift(): 
+- shift()
 ```
 /**
      * Shift an element off the beginning of array
      * @return mixed
      */
 ```
-- unshift($value1): 
+- unshift($value1)
 ```
 /**
      * Prepend one or more elements to the beginning of an array
@@ -134,14 +134,14 @@
      * @return int
      */
 ```
-- pop(): 
+- pop()
 ```
 /**
      * Pop the element off the end of array
      * @return mixed
      */
 ```
-- push($value1): 
+- push($value1)
 ```
 /**
      * Push one or more elements onto the end of array
@@ -149,7 +149,7 @@
      * @return int
      */
 ```
-- implode($glue): 
+- implode($glue)
 ```
 /**
      * Join array elements with a string
@@ -157,7 +157,7 @@
      * @return string|StringClass
      */
 ```
-- filter($callback): 
+- filter($callback)
 ```
 /**
      * Filters elements of an array using a callback function
@@ -165,7 +165,7 @@
      * @return Array|ArrayClass
      */
 ```
-- count($mode): 
+- count($mode)
 ```
 /**
      * Count all elements in an array
@@ -173,25 +173,25 @@
      * @return int
      */
 ```
-- offsetExists($offset): 
+- offsetExists($offset)
 ```
 /**
      * @ignore
      */
 ```
-- offsetGet($offset): 
+- offsetGet($offset)
 ```
 /**
      * @ignore
      */
 ```
-- offsetSet($offset, $value): 
+- offsetSet($offset, $value)
 ```
 /**
      * @ignore
      */
 ```
-- offsetUnset($offset): 
+- offsetUnset($offset)
 ```
 /**
      * @ignore

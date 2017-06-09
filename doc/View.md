@@ -4,7 +4,7 @@
  * View Class
  */
 ```
-- __construct(string $path, array $context): 
+- __construct(string $path, array $context)
 ```
 /**
      * Constructor
@@ -13,7 +13,7 @@
      * @param array $context
      */
 ```
-- sanitize(array $data): 
+- sanitize(array $data)
 ```
 /**
      * Sanatize array before passing it to the view
@@ -21,7 +21,7 @@
      * @param array &$data
      */
 ```
-- display($view, array $_DATA): 
+- display($view, array $_DATA)
 ```
 /**
      * Display a view

@@ -4,7 +4,7 @@
  *  Router class
  */
 ```
-- __construct(string $uri): 
+- __construct(string $uri)
 ```
 /**
      * Constructor
@@ -12,19 +12,19 @@
      * @param string $uri
      */
 ```
-- __set(string $url, callable $action): 
+- __set(string $url, callable $action)
 ```
 /** @ignore */
 ```
-- __debugInfo(): 
+- __debugInfo()
 ```
 /** @ignore */
 ```
-- __invoke(): 
+- __invoke()
 ```
 /** @ignore */
 ```
-- add(string $url, callable $action): 
+- add(string $url, callable $action)
 ```
 /**
      * add route
@@ -32,7 +32,7 @@
      * @param callable $action
      */
 ```
-- get(string $url, callable $action): 
+- get(string $url, callable $action)
 ```
 /**
      * Add get route
@@ -40,7 +40,7 @@
      * @param callable $action
      */
 ```
-- post(string $url, callable $action): 
+- post(string $url, callable $action)
 ```
 /**
      * Add post route
@@ -48,7 +48,7 @@
      * @param callable $action
      */
 ```
-- patch(string $url, callable $action): 
+- patch(string $url, callable $action)
 ```
 /**
      * Add patch route
@@ -56,7 +56,7 @@
      * @param callable $action
      */
 ```
-- delete(string $url, callable $action): 
+- delete(string $url, callable $action)
 ```
 /**
      * Add delete route
@@ -64,7 +64,7 @@
      * @param callable $action
      */
 ```
-- addWithMethod(string $method, string $url, callable $action): 
+- addWithMethod(string $method, string $url, callable $action)
 ```
 /**
      * add a route with a method
@@ -79,14 +79,14 @@
      * @param callable $action
      */
 ```
-- setNotFound(callable $action): 
+- setNotFound(callable $action)
 ```
 /**
      * Add callback for 404 cases
      * @param callable $action
      */
 ```
-- dispatch(): 
+- dispatch()
 ```
 /**
      * Dispatch routes
@@ -101,7 +101,7 @@
      * @param bool $perm If the redirection is permanent (alias SEO friendly)
      */
 ```
-- cache($duration): 
+- cache($duration)
 ```
 /**
      * Cache
