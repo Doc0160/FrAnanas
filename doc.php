@@ -15,9 +15,10 @@ unset($dirs);
 $new_classes = array_diff_key(get_declared_classes(), $classes);
 unset($classes);
 
-$file = fopen("doc.md", "w");
+$README = fopen("doc/README.md", "w");
 
 foreach($new_classes as $new_class) {
+    $file = fopen("doc/".$new_class.".md", "w");
     $class = new ReflectionClass($new_class);
     unset($new_class);
     fwrite($file, '# ');
@@ -32,6 +33,24 @@ foreach($new_classes as $new_class) {
     fwrite($file, PHP_EOL);
     fwrite($file, '```');
     fwrite($file, PHP_EOL);
+    
+    if($class->isFinal()) {
+        fwrite($README, 'final ');
+    }
+    fwrite($README, '# ');
+    fwrite($README, '[');
+    fwrite($README, $class->getName());
+    fwrite($README, '](');
+    fwrite($README, $class->getName());
+    fwrite($README, '.md)');
+    fwrite($README, PHP_EOL);
+    fwrite($README, '```');
+    fwrite($README, PHP_EOL);
+    fwrite($README, $class->getDocComment());
+    fwrite($README, PHP_EOL);
+    fwrite($README, '```');
+    fwrite($README, PHP_EOL);
+    
     $methods = $class->getMethods(); 
     foreach ($methods as $method) {
         fwrite($file, '- ');
@@ -67,6 +86,8 @@ foreach($new_classes as $new_class) {
     }
     unset($methods);
     fwrite($file, PHP_EOL);
+    fwrite($README, PHP_EOL);
+    fclose($file);
 }
-fclose($file);
+fclose($README);
 
