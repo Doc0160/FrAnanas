@@ -22,8 +22,6 @@ $router = new Router();
 $session = new Session();
 $cookie = new Cookie();
 
-$db = new DB();
-
 // TODO(doc): find a place for that
 /**
  * Check if serialized

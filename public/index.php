@@ -5,20 +5,31 @@ define('PROFILER', true);
 require('../core/core.php');
 
 /*
-Database::setConfig('mysql:host=localhost;'.
-                    'port=3306;'.
-                    'dbname=ananas;'.
-                    'charset=utf8',
-                    'root', '');
-$database = Database::getInstance();
+   Database::setConfig('mysql:host=localhost;'.
+   'port=3306;'.
+   'dbname=ananas;'.
+   'charset=utf8',
+   'root', '');
+   $database = Database::getInstance();
 
-$db = new DB();
-$db->setConfig('mysql:host=localhost;'.
-               'port=3306;'.
-               'dbname=ananas;'.
-               'charset=utf8',
-               'root', '');
+   $db = new DB();
+   $db->setConfig('mysql:host=localhost;'.
+   'port=3306;'.
+   'dbname=ananas;'.
+   'charset=utf8',
+   'root', '');
+ */
+
+/*
+class Action extends Enum
+{
+    const VIEW = 'view';
+    const EDIT = 'edit';
+}
+$action = Action::VIEW();
+$action = new Action(Action::VIEW);
 */
+
 $router->setNotFound(function($url) {
     global $view;    
     $view->display('404.php', ['url' => $url]);
@@ -47,7 +58,7 @@ $router->add('/test/*',
                      
                      var_dump($d['id']);
                      
-                     assert(((int)$d['id']) != 0);
+                     assert(is_numeric($d['id']), 'ID is not numerical');
                      
                  }, ['id' => $id]);
              }));

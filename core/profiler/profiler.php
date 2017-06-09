@@ -134,7 +134,7 @@ body {
      * 
      * Just use ```assert(true==false, 'I want to know if right is wrong');```
      *
-     * @param $file
+     * @param string $file
      * @param $line
      * @param $code
      * @param $desc

@@ -107,7 +107,7 @@ class Session implements ArrayAccess, Countable {
             }
         }
     }
-
+    
     public function destroy():void {
         if(session_id()){
             session_unset();
@@ -115,6 +115,9 @@ class Session implements ArrayAccess, Countable {
         }
     }
 
+    /**
+     * Destroy then start the session
+     */
     public function restart():void {
         $this->destroy();
         $this->start();
@@ -122,6 +125,8 @@ class Session implements ArrayAccess, Countable {
 
     /**
      * Get Session CSRF token
+     * 
+     * return string
      */
     public function get_csrf_token():string {
         if (!session_id()) $this->start();
@@ -130,10 +135,12 @@ class Session implements ArrayAccess, Countable {
 
     /**
      * Check if CSRF token exist is wright
+     *
+     * @param $token token to compare to
      */
     public function is_csrf_protected($token = ""):bool {
-        if (empty($token) && isset($_REQUEST["csrftoken"])) {
-            $token = $_REQUEST["csrftoken"];
+        if (empty($token) && isset($_REQUEST["__csrf_token"])) {
+            $token = $_REQUEST["__csrf_token"];
         }
         return $token === $this->get_csrf_token();
     }

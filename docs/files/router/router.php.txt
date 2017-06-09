@@ -69,7 +69,7 @@ class Router {
     }
     
     /**
-     * add get route
+     * Add get route
      * @param string $url
      * @param callable $action
      */
@@ -78,12 +78,30 @@ class Router {
     }
 
     /**
-     * add post route
+     * Add post route
      * @param string $url
      * @param callable $action
      */
     public function post(string $url, callable $action){
         return $this->addWithMethod("POST", $url, $action);
+    }
+
+    /**
+     * Add patch route
+     * @param string $url
+     * @param callable $action
+     */
+    public function patch(string $url, callable $action){
+        return $this->addWithMethod("PATCH", $url, $action);
+    }
+
+    /**
+     * Add delete route
+     * @param string $url
+     * @param callable $action
+     */
+    public function delete(string $url, callable $action){
+        return $this->addWithMethod("DELETE", $url, $action);
     }
     
     /**
@@ -175,16 +193,23 @@ class Router {
      * Redirect
      * 
      * @param string $page Route to redirect to
+     * @param bool $perm If the redirection is permanent (alias SEO friendly)
      */
-    public function redirect(string $page):void {
+    public function redirect(string $page, bool $perm = false):void {
         if (!headers_sent()) {
-            header('Location: '.$this->uri.$page);
+            if($perm) {
+                header('Location: '.$this->uri.$page, true, 301);
+            } else {
+                header('Location: '.$this->uri.$page);
+            }
             exit;
         }
         throw new RouterException('You cannot redirect after headers have been sent');
     }
 
     /**
+     * Cache
+     * 
      * @param $duration Duration in seconds or false to never cache
      */
     public function cache($duration = false) {
