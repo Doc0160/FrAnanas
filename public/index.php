@@ -21,14 +21,14 @@ require('../core/core.php');
  */
 
 /*
-class Action extends Enum
-{
-    const VIEW = 'view';
-    const EDIT = 'edit';
-}
-$action = Action::VIEW();
-$action = new Action(Action::VIEW);
-*/
+   class Action extends Enum
+   {
+   const VIEW = 'view';
+   const EDIT = 'edit';
+   }
+   $action = Action::VIEW();
+   $action = new Action(Action::VIEW);
+ */
 
 $router->setNotFound(function($url) {
     global $view;    
@@ -36,13 +36,8 @@ $router->setNotFound(function($url) {
 });
 
 $router->add('/', function() {
-    echo 'index.php !!! <a href="/test/">test</a><br>';
-    global $db;
-    echo '<pre>';
-    $db->select()->from('user')->limit(5)->orderby("id");
-    var_dump($db->req());
-    var_dump($db->fetchAll());
-    echo '</pre>';
+    global $view;
+    $view->display('news.php');
 });
 
 $router->add('/test/*',

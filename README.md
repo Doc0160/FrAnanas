@@ -27,6 +27,11 @@ PHP framework that loves pineapples.
 * (WIP) [v1.3](https://github.com/Doc0160/FrAnanas/tree/v1.3)
     * PHPUnit partial test for [ArrayClass]
     * Removed [Input]
+    * Fixed [Route] to be compatible with GET request with parameters
+    * [Profile] added
+    * [fake] added
+    * [DB] added, WIP
+    * [enum] added
     * 
     * 
     

@@ -21,6 +21,13 @@
  */
 ```
 
+# Cache
+```
+/**
+ * Cache Class
+ */
+```
+
 # Controller
 ```
 /**
@@ -74,6 +81,11 @@
  * $action = new Action(Action::VIEW);
  * ```
  */
+```
+
+# final fake
+```
+
 ```
 
 # Profiler

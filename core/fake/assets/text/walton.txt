@@ -1,0 +1,18 @@
+# Based on a simple technique for maintaining optimal
+# column measure as described by Trent Walton.
+# 
+# http://trentwalton.com/2012/06/19/fluid-type/
+#
+# As they denote the 45th and 75th characters, aim for
+# one but never more than two "*" per line.
+#
+
+Lorem ipsum dolor sit amet, consectetur adip<span title="&rang;45 chars">*</span>isicing elit, sed do eiusmod <span title="&lang;75 chars">*</span>tempor incididunt ut labore et dolore magna aliqu.
+
+Pellentesque habitant morbi tristique senect<span title="&rang;45 chars">*</span>us et netus et malesuada fame<span title="&lang;75 chars">*</span>s ac turpis egestas.
+
+Nam interdum iaculis tincidunt. Aenean vel n<span title="&rang;45 chars">*</span>isl a ipsum posuere facilisis<span title="&lang;75 chars">*</span> ut quis est. Maecenas faucibus mollis interdum.
+
+Praesent consectetur sollicitudin lobortis. <span title="&rang;45 chars">*</span>Aenean massa erat, laoreet el<span title="&lang;75 chars">*</span>ementum mollis non, consectetur ut massa.
+
+Phasellus vitae pharetra felis. In quis nibh<span title="&rang;45 chars">*</span> justo, non semper lectus. Ph<span title="&lang;75 chars">*</span>asellus et tellus eu mi volutpat dapibus.

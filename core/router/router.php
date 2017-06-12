@@ -155,7 +155,7 @@ class Router {
             return true;
         });
         
-        $_url = $_SERVER['REQUEST_URI'];
+        $_url = explode('?', $_SERVER['REQUEST_URI'])[0];
         $_method = $_SERVER['REQUEST_METHOD'];
         
         if(isset($this->routes[$_method])) {

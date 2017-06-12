@@ -19,60 +19,137 @@ class Profiler {
      */
     public $css = '
 <style>
-#php-profiler-bar .arrow {
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    margin-top: -0.5em;
-}
-#php-profiler-bar {
-    position: fixed;
+ /*
+    #php-profiler-bar, #php-profiler-bar * {
+    box-sizing: border-box;
+    }
+    #php-profiler-bar li:hover > ul {
+    display: block !important;
+    }
+    #php-profiler-bar li > ul li {
+    display: block !important;
+    border: none !important;
+    }
+    #php-profiler-bar {
+    position: fixed !important;
     top: 0;
     left: 0;
     right: 0;
     padding: 0;
     margin: 0;
     background-color: black;
-    color: white;
+    color: white !important;
     font: 1em "Trebuchet MS",Arial,sans-serif ;
-    line-height: 2em ;
+    line-height: 2em;
     overflow-x: scroll;
     overflow-y: visible;
     list-style: none;
     white-space: nowrap;
-    //padding: 0.5em;
-}
-#php-profiler-bar li {
+    word-spacing: normal;
+    }
+    #php-profiler-bar li {
     margin: 0;
     padding: 0 1em;
-    display: inline;
-    border-right: 1px solid white;
-}
-#php-profiler-bar li > ul {
-    display: none;
-    position: fixed;
-    left: 0;
-    right: 0;
+    display: inline !important;
+    border-right: 1px solid white !important;
+    }
+    #php-profiler-bar li > ul {
+    display: none !important;
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
     top: 1.5em;
     background-color: black;
     border-top: 1px solid white;
     overflow: auto;
-    padding: 0.5em;;
-line-height: 1em ;
-}
-#php-profiler-bar li:hover > ul {
-    display: block;
-}
-#php-profiler-bar li > ul li {
-    display: block;
-    border: none;
-}
+    padding: 0.5em;
+    line-height: 1em !important;
+    }*/
+
 body {
     margin-top: 3em !important;
 }
+.php-debug-tabs {
+   position: fixed !important;
+   top: 0;
+   left: 0;
+   right: 0;
+   padding: 0;
+   margin: 0;
+}
+.tab {
+     float: left;
+     position: relative;
+ }
+.tab label {
+     background: linear-gradient(#eee, #ccc);
+     padding: 10px 30px;
+     cursor: pointer;
+     text-align: center;
+     display: block;
+     position: relative;
+ }
+.tab label i {
+     font-style: normal;
+     font-size: 10px;
+     color: #aaa;
+ }
+.tab [type=radio] {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     opacity: 0;
+     margin: 0;
+     z-index: 1;
+ }
+.php-debug-content {
+    position: fixed;
+    width: 90%;
+    max-height: 80%;
+    opacity: 0;
+    left: 0;
+    background: #333;
+    color: white;
+    padding: 20px;
+    overflow: auto;
+}
+ .php-debug-content ul {
+     margin: 0;
+     padding: 0;
+     list-style: none;
+ }
+ .php-debug-content a {
+     color: white;
+     display: block;
+     white-space: nowrap;
+     text-decoration: none;
+     border-bottom: 1px solid #999;
+     padding: 5px;
+ }  
+ [type=radio]:checked ~ label {
+     z-index: 2;
+ }
+ [type=radio]:checked ~ label ~ .php-debug-content {
+     z-index: 1;
+     opacity: 1;
+ }
+ .close-tab {
+     position: absolute;
+     z-index: -1;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+ }
+ .close-tab label {
+     background: #333;
+     color: white;
+ }
+ [type=radio]:checked ~ label ~ .close-tab {
+     z-index: 3;
+ }
 </style>';
 
     private $assert = [];
@@ -84,7 +161,7 @@ body {
     private $autoload = [];
     private $start_time = 0;
     private $end_time = 0;
-    
+
     /**
      * Constructor
      *
@@ -96,17 +173,17 @@ body {
      */
     public function __construct() {
         $this->start_time = $this->getMicrotime(true);
-        
+
         //NOTE(doc): set up assertions
         assert_options(ASSERT_ACTIVE, 1);
         assert_options(ASSERT_WARNING, 0);
         assert_options(ASSERT_BAIL, 0);
         assert_options(ASSERT_QUIET_EVAL, 1);
         assert_options(ASSERT_CALLBACK, array($this, 'assert'));
-        
+
         //NOTE(doc): set up autoload intercept
         spl_autoload_register([$this, 'autoload'], false, true);
-        
+
         //NOTE(doc): register display after the script
         register_shutdown_function(array($this, 'display'));
     }
@@ -121,7 +198,7 @@ body {
     public function autoload(string $class):bool {
         $this->autoload['items'][] = [
             'name' => (isset($this->autoload['items'])) ?
-                             count($this->autoload['items']) : 0,
+                    count($this->autoload['items']) : 0,
             'value' => $class,
         ];
         return false;
@@ -158,7 +235,7 @@ body {
         assert_options(ASSERT_BAIL, 1);
         assert_options(ASSERT_WARNING, 1);
     }
-    
+
     /**
      * Display the HTML
      */
@@ -180,66 +257,118 @@ body {
             'COOKIE' => $this->cookie,
             'GET' => $this->get,
             'POST' => $this->post,
+            'REQUEST' => $this->request,
+            'SERVER' => $this->server,
+            'ENV' => $this->env,
         ];
         echo $this->css;
-        echo '<ul id="php-profiler-bar">';
-        foreach($t as $k => $v) {
-            if(is_array($v) && empty($v)) {
+        /*echo '<ul id="php-profiler-bar">';
+           foreach($t as $k => $v) {
+           if(is_array($v) && empty($v)) {
+           continue;
+           }
+           if(is_array($v)){
+           if(count($v['items'])) {
+           echo '<li>';
+           echo '<b>' . $k . '</b>';
+           echo ' : ';
+           echo '<i>';
+           echo isset($v['items']) ?
+           count($v['items']) . ' <span class="arrow"></span>' : 0;
+           echo '<input type="radio" name="php-debug-radio">';
+           echo '</i>';
+           echo '<ul>';
+           foreach($v as $vk => $vv) {
+           if(is_array($vv)) {
+           echo strtoupper($vk);
+           echo ' : ';
+           echo isset($vv) ? count($vv) : 0;
+           foreach($vv as $vvv) {
+           echo '<li>';
+           echo $vvv['name'];
+           echo ' : ';
+           echo '<i>';
+           if(isset($vvv['time']))
+           echo $this->getReadableTime($vvv['time']);
+           if(isset($vvv['size']))
+           echo $this->getReadableFileSize($vvv['size']);
+           if(isset($vvv['value']))
+           echo $vvv['value'];
+           echo '</i>';
+           echo '</li>';
+           }
+
+           } else if(is_string($bb)) {
+           echo '<li>';
+           echo $vk;
+           echo ' : ';
+           echo '<i>' . $vv . '</i>';
+           echo '</li>';
+           } else {
+           var_dump($vv);
+           }
+           }
+           echo '</ul>';
+           echo '</li>';
+           }
+           
+           } else {
+           echo '<li>';
+           echo '<b>' . $k . '</b>';
+           echo ' : ';
+           echo '<i>' . $v . '</i>';
+           echo '</li>';
+           }
+           }
+           echo '</ul>';*/
+        echo '<div class="php-debug-tabs">';
+        foreach($t as $key => $value) {
+            if(is_array($value) && empty($value)) {
                 continue;
             }
-            if(is_array($v)){
-                if(count($v['items'])) {
-                    echo '<li>';
-                    echo '<b>' . $k . '</b>';
-                    echo ' : ';
-                    echo '<i>';
-                    echo isset($v['items']) ?
-                         count($v['items']) . ' <span class="arrow"></span>' : 0;
-                    echo '</i>';
-                    echo '<ul>';
-                    foreach($v as $vk => $vv) {
-                        if(is_array($vv)) {
-                            echo strtoupper($vk);
-                            echo ' : ';
-                            echo isset($vv) ? count($vv) : 0;
-                            foreach($vv as $vvv) {
-                                echo '<li>';
-                                echo $vvv['name'];
-                                echo ' : ';
-                                echo '<i>';
-                                if(isset($vvv['time']))
-                                    echo $this->getReadableTime($vvv['time']);
-                                if(isset($vvv['size']))
-                                    echo $this->getReadableFileSize($vvv['size']);
-                                if(isset($vvv['value']))
-                                    echo $vvv['value'];
-                                echo '</i>';
-                                echo '</li>';
-                            }
+            echo '<div class="tab">';
+            
+            echo '<input type="radio" id="tab-1" name="tab-group-1">';
+            echo '<label for="tab-1">'.$key.' <i>▼</i></label>';
+            echo '<div class="tab close-tab">';
+            echo '<input type="radio" id="tab-close" name="tab-group-1">';
+            echo '<label for="tab-close">'.$key.' <i>▲</i></label>';
+            echo '</div>';
 
-                        } else if(is_string($bb)) {
-                            echo '<li>';
-                            echo $vk;
-                            echo ' : ';
-                            echo '<i>' . $vv . '</i>';
-                            echo '</li>';
-                        } else {
-                            var_dump($vv);
+            echo '<div class="php-debug-content">';
+		    echo '<ul>';
+            if(is_array($value)) {
+                if(isset($value['items']) && count($value['items'])) {
+                    foreach($value['items'] as $subkey => $subvalue) {
+                        echo '<li><a href="#!">';
+                        if(isset($subvalue['name'])) {
+                            echo '<b>';
+                            echo $subvalue['name'];
+                            echo ': ';
+                            echo '</b>';
                         }
+                        foreach(['value', 'size'] as $a) {
+                            if(isset($subvalue[$a])) {
+                                echo $subvalue[$a];
+                                echo ' ';
+                            }
+                        }
+                        echo '</a></li>';
                     }
-                    echo '</ul>';
+                } else {
+                    echo '<li>';
+                    var_dump($value);
                     echo '</li>';
                 }
-                
             } else {
-                echo '<li>';
-                echo '<b>' . $k . '</b>';
-                echo ' : ';
-                echo '<i>' . $v . '</i>';
-                echo '</li>';
+		        echo '<li><a href="#">'.$value.'</a></li>';
             }
+        	echo '</ul>';
+            echo '</div>';
+            
+            echo '</div>';
         }
-        echo '</ul>';
+        echo '</div>';
     }
 
     /**
@@ -249,11 +378,65 @@ body {
         $this->end_time = $this->getMicrotime();
         $this->max_memory_usage = memory_get_peak_usage();
         $this->memory_limit = ini_get('memory_limit');
-
+        
         $this->gatherFiles();
+        $this->gatherEnv();
+        $this->gatherRequest();
+        $this->gatherServer();
         $this->gatherInputGet();
         $this->gatherInputPost();
         $this->gatherInputSession();
+    }
+
+    /**
+     * Gather REQUEST
+     */
+    private function gatherRequest():void {
+        $section_data_array = array();
+        if (isset($_REQUEST) && is_array($_REQUEST)) {
+            foreach ($_REQUEST as $name => $value) {
+                $section_data_array[] = [
+                    'name' => $name,
+                    'value' => $value,
+                ];
+            }
+            unset($name, $value);
+            $this->request['items'] = $section_data_array;
+        }
+    }
+
+    /**
+     * Gather ENV
+     */
+    private function gatherEnv():void {
+        $section_data_array = array();
+        if (isset($_ENV) && is_array($_ENV)) {
+            foreach ($_ENV as $name => $value) {
+                $section_data_array[] = [
+                    'name' => $name,
+                    'value' => $value,
+                ];
+            }
+            unset($name, $value);
+            $this->env['items'] = $section_data_array;
+        }
+    }
+
+    /**
+     * Gather SERVER
+     */
+    private function gatherServer():void {
+        $section_data_array = array();
+        if (isset($_SERVER) && is_array($_SERVER)) {
+            foreach ($_SERVER as $name => $value) {
+                $section_data_array[] = [
+                    'name' => $name,
+                    'value' => $value,
+                ];
+            }
+            unset($name, $value);
+            $this->server['items'] = $section_data_array;
+        }
     }
 
     /**
@@ -315,7 +498,7 @@ body {
         ];
     }
 
-    
+
     /**
      * Gather COOKIE
      */
@@ -348,7 +531,7 @@ body {
                 $size = filesize($file);
                 $section_data_array[] = [
                     'name' => $file,
-                    'size' => $size,
+                    'value' => $this->getReadableFileSize($size),
                 ];
                 
                 if ($size > $largest_size) {
@@ -362,11 +545,11 @@ body {
         $this->included_files['items'] = $section_data_array;
         $this->included_files['meta'][] = [
             'name' => 'Largest Size',
-            'size' => $largest_size,
+            'value' => $largest_size,
         ];
         $this->included_files['meta'][] = [
             'name' => 'Total Size',
-            'size' => $total_size,
+            'value' => $this->getReadableFileSize($total_size),
         ];
     }
     
