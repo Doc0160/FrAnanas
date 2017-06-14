@@ -24,7 +24,7 @@ class Controller {
 
     /** @ignore */
     public function __debugInfo() {
-        return $context;
+        return [];
     }
     
     /**
@@ -39,7 +39,7 @@ class Controller {
         
         if(is_string($controller)) {
             if(file_exists($this->path.$controller)) {
-                set_error_handler(function(...$args) {
+                set_error_handler(function($errno, $errstr, $errfile, $errline) {
                     echo '<pre class="phperror phpcontroller">';
                     echo '['.$errno.'] '.$errstr;
                     if(!empty($errfile)) {
