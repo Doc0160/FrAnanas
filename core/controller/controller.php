@@ -41,7 +41,13 @@ class Controller {
             if(file_exists($this->path.$controller)) {
                 set_error_handler(function(...$args) {
                     echo '<pre class="phperror phpcontroller">';
-                    trigger_error($args[1]);
+                    echo '['.$errno.'] '.$errstr;
+                    if(!empty($errfile)) {
+                        echo PHP_EOL.'File: '. $errfile;
+                    }
+                    if(!empty($errline)) {
+                        echo '; Line: ' .$errline;
+                    }
                     echo '</pre>';
                     return true;
                 });
@@ -58,7 +64,7 @@ class Controller {
             throw new ControlerException("Controller does not exist: ".$this->path.$controller);
 
         } else if(is_callable($controller)) {
-            /*set_error_handler(function($errno, $errstr, $errfile, $errline) {
+            set_error_handler(function($errno, $errstr, $errfile, $errline) {
                 echo '<pre class="phperror phpcontroller">';
                 echo '['.$errno.'] '.$errstr;
                 if(!empty($errfile)) {
@@ -69,14 +75,14 @@ class Controller {
                 }
                 echo '</pre>';
                 return true;
-            });*/
+            });
             
             $f = function($controller) use ($_DATA) {
                 $controller($_DATA);
             };
             $f($controller);
 
-            //restore_error_handler();
+            restore_error_handler();
             return;
         }
         throw new ControllerException('You can only use functions and filename');
